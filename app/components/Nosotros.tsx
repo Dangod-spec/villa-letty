@@ -1,9 +1,9 @@
 'use client'
 
 const stats = [
-  { value: '15+', label: 'Años de Historia' },
-  { value: '5k m²', label: 'De Naturaleza' },
-  { value: '500+', label: 'Familias Felices' },
+  { value: '30+', label: 'Años de Historia' },
+  { value: '5km²', label: 'De Naturaleza' },
+  { value: '1000+', label: 'Familias Felices' },
   { value: '∞', label: 'Memorias Creadas' },
 ]
 
@@ -80,7 +80,7 @@ export default function Nosotros() {
             {/* Floating badge */}
             <div className="absolute -bottom-5 -left-5 bg-verde-oscuro text-crema px-6 py-4 shadow-xl">
               <p className="font-sans font-light text-xs tracking-widest uppercase text-dorado mb-1">Desde</p>
-              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem' }}>2008</p>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem' }}>2016</p>
             </div>
 
             {/* Gold border accent */}
