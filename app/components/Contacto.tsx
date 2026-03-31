@@ -98,9 +98,23 @@ export default function Contacto() {
                     </div>
                     <div>
                       <p className="text-dorado text-xs uppercase tracking-widest font-sans mb-1">{item.title}</p>
-                      {item.lines.map((line) => (
-                        <p key={line} className="text-verde-oscuro/80 font-sans font-light text-sm">{line}</p>
-                      ))}
+                      {item.title === 'Instagram' ? (
+                        <>
+                          <a
+                            href="https://www.instagram.com/villalettyfinca/?hl=es"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block text-verde-oscuro/80 hover:text-dorado font-sans font-light text-sm transition-colors"
+                          >
+                            {item.lines[0]}
+                          </a>
+                          <p className="text-verde-oscuro/60 font-sans font-light text-sm">{item.lines[1]}</p>
+                        </>
+                      ) : (
+                        item.lines.map((line) => (
+                          <p key={line} className="text-verde-oscuro/80 font-sans font-light text-sm">{line}</p>
+                        ))
+                      )}
                     </div>
                   </div>
                 ))}
@@ -134,7 +148,7 @@ export default function Contacto() {
               </svg>
               <div className="absolute inset-0 flex items-end justify-center pb-4">
                 <a
-                  href="https://maps.google.com/?q=Chinauta+Cundinamarca+Colombia"
+                  href="https://www.google.com/maps/place/Centro+Vacacional+Villa+Lety/@4.2855072,-74.4724188,17z/data=!4m10!1m2!2m1!1svilla+letty!3m6!1s0x8e3f1c48caf5d1e7:0xee4b053585893b1b!8m2!3d4.2855072!4d-74.4702301!15sCgt2aWxsYSBsZXR0eZIBBWhvdGVs4AEA!16s%2Fg%2F11b7hmgf4t?entry=ttu&g_ep=EgoyMDI2MDMyOS4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-verde-oscuro text-crema text-xs font-sans tracking-widest uppercase px-4 py-2 hover:bg-verde-medio transition-colors"
