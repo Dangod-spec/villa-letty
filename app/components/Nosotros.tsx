@@ -67,55 +67,14 @@ export default function Nosotros() {
             </div>
           </div>
 
-          {/* Visual placeholder */}
+          {/* Imagen real */}
           <div className="relative">
-            <div
-              className="w-full aspect-[4/5] rounded-sm overflow-hidden"
-              style={{
-                background: 'linear-gradient(145deg, #2d6a4f 0%, #1a3a2a 40%, #3a8c5f 80%, #52b788 100%)',
-              }}
-            >
-              {/* Decorative SVG landscape */}
-              <svg viewBox="0 0 400 500" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                {/* Sky */}
-                <rect width="400" height="500" fill="url(#skyGrad)" />
-                <defs>
-                  <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#87ceeb" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#2d6a4f" stopOpacity="0.8" />
-                  </linearGradient>
-                  <linearGradient id="poolGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#48cae4" />
-                    <stop offset="100%" stopColor="#0077b6" />
-                  </linearGradient>
-                </defs>
-                {/* Mountains/hills */}
-                <ellipse cx="200" cy="380" rx="300" ry="180" fill="#1a3a2a" />
-                <ellipse cx="350" cy="420" rx="200" ry="150" fill="#2d6a4f" />
-                {/* Pool */}
-                <ellipse cx="200" cy="340" rx="100" ry="30" fill="url(#poolGrad)" opacity="0.9" />
-                {/* Trees */}
-                <rect x="80" y="280" width="8" height="60" fill="#6b4226" />
-                <ellipse cx="84" cy="270" rx="30" ry="40" fill="#52b788" />
-                <ellipse cx="84" cy="255" rx="20" ry="25" fill="#2d6a4f" />
-                <rect x="300" y="260" width="8" height="80" fill="#6b4226" />
-                <ellipse cx="304" cy="250" rx="35" ry="45" fill="#52b788" />
-                <ellipse cx="304" cy="232" rx="22" ry="28" fill="#2d6a4f" />
-                {/* House */}
-                <rect x="160" y="290" width="80" height="50" fill="#e8ddc8" />
-                <polygon points="150,290 250,290 200,255" fill="#c9a84c" />
-                <rect x="185" y="315" width="20" height="25" fill="#1a3a2a" />
-                <rect x="165" y="300" width="15" height="15" fill="#87ceeb" opacity="0.7" />
-                <rect x="220" y="300" width="15" height="15" fill="#87ceeb" opacity="0.7" />
-                {/* Sun */}
-                <circle cx="320" cy="80" r="30" fill="#c9a84c" opacity="0.8" />
-                <circle cx="320" cy="80" r="22" fill="#e8c97a" opacity="0.9" />
-                {/* Flowers */}
-                <circle cx="130" cy="360" r="5" fill="#ff6b6b" />
-                <circle cx="145" cy="355" r="4" fill="#ff9f43" />
-                <circle cx="270" cy="365" r="5" fill="#ff6b6b" />
-                <circle cx="255" cy="358" r="4" fill="#ffd32a" />
-              </svg>
+            <div className="w-full aspect-[4/5] rounded-sm overflow-hidden">
+              <img
+                src="/historia.png"
+                alt="Historia de Villa Letty - Chinauta"
+                className="w-full h-full object-cover"
+              />
             </div>
 
             {/* Floating badge */}
