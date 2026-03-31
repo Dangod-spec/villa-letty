@@ -7,39 +7,9 @@ const galeríaItems = [
     id: 1,
     title: 'Piscina Principal',
     category: 'Recreación',
-    bg: 'linear-gradient(160deg, #0077b6 0%, #48cae4 50%, #90e0ef 100%)',
+    bg: '#000',
     svgContent: (
-      <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <rect width="400" height="280" fill="url(#poolBg)" />
-        <defs>
-          <linearGradient id="poolBg" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#87ceeb" />
-            <stop offset="100%" stopColor="#2d6a4f" />
-          </linearGradient>
-        </defs>
-        <ellipse cx="200" cy="180" rx="160" ry="60" fill="#0077b6" opacity="0.9" />
-        <ellipse cx="200" cy="175" rx="155" ry="55" fill="#48cae4" opacity="0.8" />
-        {/* Ripples */}
-        <ellipse cx="200" cy="175" rx="80" ry="20" fill="none" stroke="white" strokeWidth="1" opacity="0.3" />
-        <ellipse cx="200" cy="175" rx="120" ry="30" fill="none" stroke="white" strokeWidth="0.5" opacity="0.2" />
-        {/* Pool edge */}
-        <rect x="35" y="175" width="330" height="12" rx="4" fill="#e8ddc8" opacity="0.8" />
-        {/* Trees around */}
-        <rect x="30" y="110" width="6" height="70" fill="#6b4226" />
-        <ellipse cx="33" cy="100" rx="22" ry="30" fill="#2d6a4f" />
-        <rect x="360" y="100" width="6" height="80" fill="#6b4226" />
-        <ellipse cx="363" cy="90" rx="25" ry="32" fill="#52b788" />
-        <rect x="80" y="120" width="5" height="60" fill="#6b4226" />
-        <ellipse cx="82" cy="112" rx="18" ry="22" fill="#2d6a4f" />
-        {/* Sun */}
-        <circle cx="340" cy="50" r="28" fill="#f9ca24" opacity="0.9" />
-        <circle cx="340" cy="50" r="20" fill="#f0932b" opacity="0.7" />
-        {/* Lounge chairs */}
-        <rect x="60" y="192" width="50" height="12" rx="3" fill="#c9a84c" opacity="0.8" />
-        <rect x="290" y="192" width="50" height="12" rx="3" fill="#c9a84c" opacity="0.8" />
-        {/* Label */}
-        <text x="200" y="255" textAnchor="middle" fill="white" fontSize="14" fontFamily="Georgia" opacity="0.8">Piscina Principal</text>
-      </svg>
+      <img src="/piscina.png" alt="Piscina Principal - Villa Letty" className="w-full h-full object-cover" />
     ),
   },
   {
