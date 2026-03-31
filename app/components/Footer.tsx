@@ -53,7 +53,7 @@ export default function Footer() {
           <div>
             <p className="text-dorado text-xs uppercase tracking-widest font-sans mb-4">Síguenos</p>
             <a
-              href="https://www.instagram.com/villalettyfinca/"
+              href="https://www.instagram.com/villalettyfinca/?hl=es"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-crema/60 hover:text-dorado font-sans font-light text-sm transition-colors mb-4"
