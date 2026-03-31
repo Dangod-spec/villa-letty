@@ -121,31 +121,13 @@ export default function Contacto() {
               </div>
             </div>
 
-            {/* Map placeholder */}
+            {/* Imagen real de la finca */}
             <div className="relative rounded-sm overflow-hidden border border-verde-oscuro/10 shadow-md">
-              <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" className="w-full">
-                <rect width="400" height="220" fill="#e8f5e9" />
-                {/* Roads */}
-                <line x1="0" y1="110" x2="400" y2="110" stroke="#c9a84c" strokeWidth="6" opacity="0.5" />
-                <line x1="200" y1="0" x2="200" y2="220" stroke="#c9a84c" strokeWidth="4" opacity="0.4" />
-                <line x1="0" y1="60" x2="400" y2="160" stroke="#aaa" strokeWidth="2" opacity="0.3" />
-                {/* Green areas */}
-                <ellipse cx="100" cy="60" rx="60" ry="40" fill="#52b788" opacity="0.3" />
-                <ellipse cx="320" cy="160" rx="50" ry="35" fill="#40916c" opacity="0.3" />
-                <ellipse cx="280" cy="70" rx="45" ry="30" fill="#52b788" opacity="0.25" />
-                {/* Buildings */}
-                {[{x:60,y:100},{x:140,y:80},{x:260,y:120},{x:330,y:90}].map((b,i) => (
-                  <rect key={i} x={b.x} y={b.y} width="20" height="20" rx="2" fill="#aaa" opacity="0.4" />
-                ))}
-                {/* Location pin */}
-                <circle cx="200" cy="110" r="18" fill="#2d6a4f" opacity="0.9" />
-                <circle cx="200" cy="110" r="10" fill="white" />
-                <circle cx="200" cy="110" r="5" fill="#c9a84c" />
-                <line x1="200" y1="128" x2="200" y2="145" stroke="#2d6a4f" strokeWidth="2" opacity="0.7" />
-                {/* Label */}
-                <rect x="145" y="148" width="110" height="28" rx="4" fill="white" opacity="0.9" />
-                <text x="200" y="167" textAnchor="middle" fill="#1a3a2a" fontSize="12" fontFamily="Georgia">Villa Letty · Chinauta</text>
-              </svg>
+              <img
+                src="/maps.jpg"
+                alt="Vista de Villa Letty - Chinauta"
+                className="w-full h-64 object-cover"
+              />
               <div className="absolute inset-0 flex items-end justify-center pb-4">
                 <a
                   href="https://www.google.com/maps/place/Centro+Vacacional+Villa+Lety/@4.2855072,-74.4724188,17z/data=!4m10!1m2!2m1!1svilla+letty!3m6!1s0x8e3f1c48caf5d1e7:0xee4b053585893b1b!8m2!3d4.2855072!4d-74.4702301!15sCgt2aWxsYSBsZXR0eZIBBWhvdGVs4AEA!16s%2Fg%2F11b7hmgf4t?entry=ttu&g_ep=EgoyMDI2MDMyOS4wIKXMDSoASAFQAw%3D%3D"
