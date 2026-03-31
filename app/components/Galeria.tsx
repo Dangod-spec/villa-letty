@@ -392,7 +392,7 @@ export default function Galeria() {
         <p className="text-center text-verde-oscuro/50 font-sans font-light text-sm mt-10">
           ¿Quieres ver más? Síguenos en Instagram{' '}
           <a
-            href="https://www.instagram.com/villalettyfinca/"
+            href="https://www.instagram.com/villalettyfinca/?hl=es"
             target="_blank"
             rel="noopener noreferrer"
             className="text-dorado underline underline-offset-2 hover:text-verde-medio transition-colors"
