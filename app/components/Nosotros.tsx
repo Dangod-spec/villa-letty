@@ -40,7 +40,7 @@ export default function Nosotros() {
               "Un lugar donde el tiempo se detiene y la naturaleza te abraza."
             </p>
             <p className="text-verde-oscuro/80 leading-relaxed font-sans font-light">
-              Villa Letty nació hace más de 15 años del sueño de una familia que quería compartir
+              Villa Letty nació hace más de 30 años del sueño de una familia que quería compartir
               la belleza natural de Chinauta con el mundo. Ubicada en el corazón cálido de
               Cundinamarca, nuestra finca se ha convertido en el refugio favorito de familias
               que buscan escapar del ritmo acelerado de la ciudad.
