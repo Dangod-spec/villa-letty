@@ -1,5 +1,51 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+
+// Slider component for gallery items with multiple images
+function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
+  const [current, setCurrent] = useState(0)
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % images.length)
+  }, [images.length])
+
+  useEffect(() => {
+    const timer = setInterval(next, 3000)
+    return () => clearInterval(timer)
+  }, [next])
+
+  return (
+    <div className="relative w-full h-full overflow-hidden">
+      {images.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={alt}
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+          style={{ opacity: i === current ? 1 : 0 }}
+        />
+      ))}
+      {/* Dots */}
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={(e) => { e.stopPropagation(); setCurrent(i) }}
+            className="w-1.5 h-1.5 rounded-full transition-all duration-300"
+            style={{ background: i === current ? '#c9a84c' : 'rgba(255,255,255,0.5)' }}
+          />
+        ))}
+      </div>
+      {/* Arrow right */}
+      <button
+        onClick={(e) => { e.stopPropagation(); next() }}
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-black/30 hover:bg-black/50 text-white flex items-center justify-center text-xs z-10 transition-all"
+      >
+        ›
+      </button>
+    </div>
+  )
+}
 
 // SVG placeholder images simulating different areas of the finca
 const galeríaItems = [
@@ -54,46 +100,8 @@ const galeríaItems = [
     id: 3,
     title: 'Jardines Tropicales',
     category: 'Naturaleza',
-    bg: 'linear-gradient(160deg, #1a3a2a 0%, #52b788 100%)',
-    svgContent: (
-      <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <defs>
-          <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#87ceeb" />
-            <stop offset="60%" stopColor="#b7e4c7" />
-            <stop offset="100%" stopColor="#2d6a4f" />
-          </linearGradient>
-        </defs>
-        <rect width="400" height="280" fill="url(#skyG)" />
-        {/* Ground */}
-        <ellipse cx="200" cy="280" rx="250" ry="60" fill="#1a3a2a" />
-        {/* Big trees */}
-        <rect x="50" y="100" width="10" height="150" fill="#6b4226" />
-        <ellipse cx="55" cy="80" rx="50" ry="65" fill="#2d6a4f" />
-        <ellipse cx="55" cy="60" rx="35" ry="45" fill="#52b788" />
-        <rect x="320" y="80" width="12" height="170" fill="#6b4226" />
-        <ellipse cx="326" cy="60" rx="55" ry="70" fill="#2d6a4f" />
-        <ellipse cx="326" cy="38" rx="38" ry="48" fill="#52b788" />
-        {/* Medium trees */}
-        <rect x="155" y="130" width="8" height="120" fill="#6b4226" />
-        <ellipse cx="159" cy="115" rx="35" ry="45" fill="#40916c" />
-        <rect x="230" y="140" width="7" height="110" fill="#6b4226" />
-        <ellipse cx="233" cy="127" rx="28" ry="38" fill="#52b788" />
-        {/* Flowers */}
-        {[80,120,180,260,310].map((x, i) => (
-          <g key={i}>
-            <circle cx={x} cy={230 - (i % 2) * 10} r="6" fill={['#ff6b6b','#ffd32a','#ff9f43','#ff6b6b','#a29bfe'][i]} />
-            <circle cx={x+8} cy={225 - (i%2)*8} r="4" fill={['#ffd32a','#ff6b6b','#ff6b6b','#ffd32a','#fd79a8'][i]} />
-          </g>
-        ))}
-        {/* Path */}
-        <path d="M180,280 Q190,240 200,200 Q210,240 220,280" fill="#c9a084" opacity="0.5" />
-        {/* Birds */}
-        <path d="M180,50 Q185,45 190,50" fill="none" stroke="#1a3a2a" strokeWidth="1.5" />
-        <path d="M200,45 Q205,40 210,45" fill="none" stroke="#1a3a2a" strokeWidth="1.5" />
-        <text x="200" y="268" textAnchor="middle" fill="white" fontSize="13" fontFamily="Georgia" opacity="0.9">Jardines Tropicales</text>
-      </svg>
-    ),
+    bg: '#1a3a2a',
+    svgContent: <ImageSlider images={['/jardin1.png', '/jardin2.png']} alt="Jardines Tropicales - Villa Letty" />,
   },
   {
     id: 4,
