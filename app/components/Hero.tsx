@@ -3,50 +3,25 @@
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background with gradient overlay simulating tropical landscape */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `
-            linear-gradient(
+      {/* Imagen real de fondo con overlay oscuro */}
+      <div className="absolute inset-0">
+        <img
+          src="/portada.png"
+          alt="Villa Letty - Chinauta"
+          className="w-full h-full object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(
               to bottom,
-              rgba(10,30,15,0.55) 0%,
-              rgba(20,50,30,0.4) 40%,
-              rgba(10,30,15,0.7) 100%
-            ),
-            linear-gradient(
-              135deg,
-              #1a3a2a 0%,
-              #2d6a4f 30%,
-              #3a8c5f 50%,
-              #2d6a4f 70%,
-              #1a3a2a 100%
-            )
-          `,
-        }}
-      />
-
-      {/* Decorative SVG tropical pattern */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-10"
-        viewBox="0 0 800 600"
-        preserveAspectRatio="xMidYMid slice"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Palm leaf shapes */}
-        <ellipse cx="100" cy="500" rx="200" ry="40" fill="#52b788" transform="rotate(-30 100 500)" />
-        <ellipse cx="80" cy="490" rx="180" ry="35" fill="#52b788" transform="rotate(-60 80 490)" />
-        <ellipse cx="700" cy="100" rx="200" ry="40" fill="#52b788" transform="rotate(30 700 100)" />
-        <ellipse cx="720" cy="110" rx="180" ry="35" fill="#52b788" transform="rotate(60 720 110)" />
-        <ellipse cx="750" cy="580" rx="150" ry="30" fill="#b7e4c7" transform="rotate(-20 750 580)" />
-        <circle cx="400" cy="300" r="250" fill="none" stroke="#c9a84c" strokeWidth="0.5" opacity="0.3" />
-        <circle cx="400" cy="300" r="350" fill="none" stroke="#c9a84c" strokeWidth="0.3" opacity="0.2" />
-      </svg>
-
-      {/* Floating leaf elements */}
-      <div className="absolute top-20 left-10 text-verde-claro opacity-20 animate-float text-6xl">🌿</div>
-      <div className="absolute bottom-32 right-16 text-verde-claro opacity-15 animate-float delay-300 text-5xl">🌺</div>
-      <div className="absolute top-40 right-20 text-verde-claro opacity-10 animate-float delay-500 text-7xl">🌿</div>
+              rgba(10,30,15,0.45) 0%,
+              rgba(10,30,15,0.3) 40%,
+              rgba(10,30,15,0.65) 100%
+            )`,
+          }}
+        />
+      </div>
 
       {/* Main content */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
