@@ -17,7 +17,7 @@ export default function WhatsAppButton() {
     return () => clearTimeout(t)
   }, [])
 
-  const phoneNumber = '573242307424'
+  const phoneNumber = '573134941865'
   const message = encodeURIComponent('Hola, me gustaría obtener más información sobre Villa Letty 🌿')
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`
 
