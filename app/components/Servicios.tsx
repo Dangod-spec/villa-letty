@@ -44,7 +44,7 @@ export default function Servicios() {
     <section
       id="servicios"
       className="py-28 relative overflow-hidden"
-      style={{ background: '#028443' }}
+      style={{ background: '#38604c' }}
     >
       {/* Subtle warm texture overlay */}
       <div
