@@ -146,109 +146,17 @@ const galeríaItems = [
   },
   {
     id: 5,
-    title: 'Área Deportiva',
+    title: 'Cancha Múltiple',
     category: 'Recreación',
-    bg: 'linear-gradient(135deg, #00b894 0%, #2d6a4f 100%)',
-    svgContent: (
-      <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <defs>
-          <linearGradient id="courtBg" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#87ceeb" />
-            <stop offset="100%" stopColor="#b7e4c7" />
-          </linearGradient>
-        </defs>
-        <rect width="400" height="280" fill="url(#courtBg)" />
-        {/* Football field */}
-        <rect x="20" y="60" width="360" height="180" rx="5" fill="#40916c" />
-        <rect x="20" y="60" width="360" height="180" rx="5" fill="none" stroke="white" strokeWidth="2" />
-        {/* Center circle */}
-        <circle cx="200" cy="150" r="40" fill="none" stroke="white" strokeWidth="2" />
-        <circle cx="200" cy="150" r="3" fill="white" />
-        {/* Center line */}
-        <line x1="200" y1="60" x2="200" y2="240" stroke="white" strokeWidth="2" />
-        {/* Goal areas */}
-        <rect x="20" y="110" width="50" height="80" fill="none" stroke="white" strokeWidth="1.5" />
-        <rect x="330" y="110" width="50" height="80" fill="none" stroke="white" strokeWidth="1.5" />
-        {/* Goals */}
-        <rect x="15" y="125" width="12" height="50" fill="none" stroke="white" strokeWidth="2" />
-        <rect x="373" y="125" width="12" height="50" fill="none" stroke="white" strokeWidth="2" />
-        {/* Players */}
-        {[{x:100,y:140},{x:160,y:110},{x:250,y:170},{x:300,y:130}].map((p,i) => (
-          <g key={i}>
-            <circle cx={p.x} cy={p.y-15} r="8" fill={i<2 ? '#c9a84c' : '#e17055'} />
-            <rect cx={p.x} cy={p.y} x={p.x-5} y={p.y-7} width="10" height="15" rx="2" fill={i<2 ? '#c9a84c' : '#e17055'} />
-          </g>
-        ))}
-        {/* Ball */}
-        <circle cx="200" cy="155" r="7" fill="white" />
-        <path d="M196,150 L200,148 L204,150 L205,155 L200,158 L195,155 Z" fill="#333" />
-        {/* Trees border */}
-        {[0,1,2,3].map(i => (
-          <g key={i}>
-            <rect x={30 + i*90} y="40" width="5" height="22" fill="#6b4226" />
-            <ellipse cx={32 + i*90} cy={32} rx="14" ry="18" fill="#2d6a4f" />
-          </g>
-        ))}
-        <text x="200" y="268" textAnchor="middle" fill="white" fontSize="13" fontFamily="Georgia">Cancha Múltiple</text>
-      </svg>
-    ),
+    bg: '#1a3a2a',
+    svgContent: <ImageSlider images={['/cancha1.jpeg', '/cancha2.jpeg']} alt="Cancha Múltiple - Villa Letty" />,
   },
   {
     id: 6,
-    title: 'Comedor Campestre',
+    title: 'Comedor Principal',
     category: 'Gastronomía',
-    bg: 'linear-gradient(135deg, #c9a84c 0%, #6b4226 100%)',
-    svgContent: (
-      <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <rect width="400" height="280" fill="#f5f0e8" />
-        {/* Wooden ceiling beams */}
-        {[0,1,2].map(i => (
-          <rect key={i} x={0} y={i*25} width={400} height={8} fill="#6b4226" opacity="0.4" />
-        ))}
-        {/* Wall */}
-        <rect x="0" y="0" width="400" height="100" fill="#e8ddc8" />
-        {/* Window with view */}
-        <rect x="120" y="20" width="160" height="70" fill="#87ceeb" opacity="0.7" />
-        <rect x="120" y="20" width="160" height="70" fill="none" stroke="#6b4226" strokeWidth="3" />
-        <line x1="200" y1="20" x2="200" y2="90" stroke="#6b4226" strokeWidth="2" />
-        <ellipse cx="155" cy="90" rx="25" ry="15" fill="#52b788" />
-        <ellipse cx="240" cy="90" rx="20" ry="12" fill="#2d6a4f" />
-        {/* Floor */}
-        <rect x="0" y="100" width="400" height="180" fill="#c9a084" />
-        {/* Table 1 */}
-        <ellipse cx="150" cy="195" rx="70" ry="35" fill="#6b4226" />
-        <ellipse cx="150" cy="190" rx="70" ry="35" fill="#8b5e3c" />
-        {/* Table cloth */}
-        <ellipse cx="150" cy="188" rx="60" ry="28" fill="#f5f0e8" opacity="0.9" />
-        {/* Dishes */}
-        <circle cx="130" cy="185" r="12" fill="white" stroke="#ccc" strokeWidth="1" />
-        <circle cx="170" cy="185" r="12" fill="white" stroke="#ccc" strokeWidth="1" />
-        {/* Flower center */}
-        <circle cx="150" cy="185" r="8" fill="#c9a84c" />
-        <circle cx="150" cy="185" r="4" fill="#ff6b6b" />
-        {/* Chairs */}
-        {[100,200].map((x,i) => (
-          <g key={i}>
-            <ellipse cx={x} cy={215} rx="18" ry="10" fill="#6b4226" />
-            <rect x={x-9} y={205} width="18" height="12" rx="2" fill="#8b5e3c" />
-          </g>
-        ))}
-        {/* Table 2 */}
-        <ellipse cx="300" cy="200" rx="60" ry="30" fill="#8b5e3c" />
-        <ellipse cx="300" cy="197" rx="52" ry="25" fill="#f5f0e8" opacity="0.9" />
-        <circle cx="300" cy="195" r="7" fill="#c9a84c" />
-        <circle cx="278" cy="193" r="10" fill="white" stroke="#ccc" strokeWidth="1" />
-        <circle cx="320" cy="193" r="10" fill="white" stroke="#ccc" strokeWidth="1" />
-        {/* Hanging lights */}
-        <line x1="100" y1="0" x2="100" y2="45" stroke="#6b4226" strokeWidth="1" />
-        <circle cx="100" cy="48" r="8" fill="#f9ca24" opacity="0.8" />
-        <line x1="200" y1="0" x2="200" y2="35" stroke="#6b4226" strokeWidth="1" />
-        <circle cx="200" cy="38" r="8" fill="#f9ca24" opacity="0.8" />
-        <line x1="300" y1="0" x2="300" y2="50" stroke="#6b4226" strokeWidth="1" />
-        <circle cx="300" cy="53" r="8" fill="#f9ca24" opacity="0.8" />
-        <text x="200" y="268" textAnchor="middle" fill="#6b4226" fontSize="13" fontFamily="Georgia">Comedor Principal</text>
-      </svg>
-    ),
+    bg: '#2d1a0a',
+    svgContent: <ImageSlider images={['/salon1.jpeg', '/salon2.jpeg', '/salon3.jpeg', '/salon4.jpeg', '/salon5.jpeg', '/salon6.jpeg', '/salon7.jpeg']} alt="Comedor Principal - Villa Letty" />,
   },
 ]
 
