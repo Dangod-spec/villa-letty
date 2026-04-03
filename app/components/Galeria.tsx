@@ -54,8 +54,7 @@ const galeríaItems = [
     title: 'Piscina Principal',
     category: 'Recreación',
     bg: '#000',
-    svgContent: (
-      <img src="/piscina.png" alt="Piscina Principal - Villa Letty" className="w-full h-full object-cover" />
+    svgContent: <ImageSlider images={['/piscina.png', '/piscina2.jpeg']} alt="Piscina Principal - Villa Letty" className="w-full h-full object-cover" />
     ),
   },
   {
