@@ -3,40 +3,34 @@
 const servicios = [
   {
     numero: '01',
-    title: 'Piscinas Naturales',
-    desc: 'Tres piscinas de agua cristalina rodeadas de naturaleza tropical, perfectas para adultos y niños con diferentes profundidades.',
+    title: 'Piscinas natural',
+    desc: 'Una piscina de agua cristalina rodeada de naturaleza, perfecta para adultos y niños con diferentes.',
     detalle: 'Incluido en todos los paquetes',
   },
   {
     numero: '02',
-    title: 'Alojamiento Campestre',
+    title: 'Alojamiento campestre',
     desc: 'Habitaciones y cabañas privadas con materiales naturales y toda la comodidad moderna para un descanso verdaderamente reparador.',
     detalle: 'Disponible fines de semana y festivos',
   },
   {
     numero: '03',
-    title: 'Gastronomía Local',
+    title: 'Gastronomía local',
     desc: 'Sabores auténticos del campo colombiano: desayunos abundantes, almuerzos campestres y cenas preparadas con productos frescos de la región.',
     detalle: 'Menú incluido en paquetes de alojamiento',
   },
   {
     numero: '04',
-    title: 'Actividades Recreativas',
+    title: 'Actividades recreativas',
     desc: 'Canchas de fútbol, voleibol, ping pong, senderos naturales y juegos infantiles. Entretenimiento garantizado para toda la familia.',
     detalle: 'Disponible todo el día',
   },
   {
     numero: '05',
-    title: 'Eventos Especiales',
+    title: 'Eventos especiales',
     desc: 'Salones y zonas al aire libre para cumpleaños, reuniones familiares y eventos corporativos con capacidad para hasta 200 personas.',
     detalle: 'Consulta disponibilidad de fechas',
-  },
-  {
-    numero: '06',
-    title: 'Turismo de Naturaleza',
-    desc: 'Senderos ecológicos guiados, observación de aves y mariposas, y conexión con la biodiversidad única del cálido clima de Cundinamarca.',
-    detalle: 'Recorridos con guía incluido',
-  },
+  }
 ]
 
 export default function Servicios() {
