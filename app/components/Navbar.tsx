@@ -10,6 +10,7 @@ export default function Navbar() {
   const links = [
     { href: '#nosotros', label: 'Nosotros', id: 'nosotros' },
     { href: '#servicios', label: 'Servicios', id: 'servicios' },
+    { href: '#tarifas', label: 'Tarifas', id: 'tarifas' },
     { href: '#galeria', label: 'Galería', id: 'galeria' },
     { href: '#contacto', label: 'Contacto', id: 'contacto' },
   ]
