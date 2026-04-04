@@ -58,41 +58,10 @@ const galeríaItems = [
   },
   {
     id: 2,
-    title: 'Zona de Descanso',
+    title: 'Habitaciones Confort',
     category: 'Hospedaje',
-    bg: 'linear-gradient(135deg, #6b4226 0%, #c9a84c 100%)',
-    svgContent: (
-      <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <rect width="400" height="280" fill="#f5f0e8" />
-        {/* Room walls */}
-        <rect x="0" y="0" width="400" height="280" fill="#e8ddc8" />
-        {/* Floor */}
-        <rect x="0" y="200" width="400" height="80" fill="#c9a084" />
-        {/* Bed */}
-        <rect x="80" y="120" width="180" height="100" rx="6" fill="white" />
-        <rect x="80" y="120" width="180" height="30" rx="6" fill="#c9a84c" opacity="0.6" />
-        <rect x="90" y="155" width="160" height="60" rx="4" fill="#f0e6d3" />
-        {/* Pillows */}
-        <rect x="90" y="125" width="70" height="20" rx="8" fill="white" />
-        <rect x="180" y="125" width="70" height="20" rx="8" fill="white" />
-        {/* Window */}
-        <rect x="280" y="40" width="100" height="120" fill="#87ceeb" opacity="0.6" />
-        <rect x="280" y="40" width="100" height="120" fill="none" stroke="#6b4226" strokeWidth="4" />
-        <line x1="330" y1="40" x2="330" y2="160" stroke="#6b4226" strokeWidth="2" />
-        <line x1="280" y1="100" x2="380" y2="100" stroke="#6b4226" strokeWidth="2" />
-        {/* Curtains */}
-        <path d="M280,40 Q260,100 280,160" fill="#2d6a4f" opacity="0.4" />
-        <path d="M380,40 Q400,100 380,160" fill="#2d6a4f" opacity="0.4" />
-        {/* Plant */}
-        <rect x="20" y="160" width="8" height="40" fill="#6b4226" />
-        <ellipse cx="24" cy="150" rx="25" ry="20" fill="#52b788" />
-        <ellipse cx="24" cy="138" rx="15" ry="12" fill="#2d6a4f" />
-        {/* Lamp */}
-        <rect x="50" y="80" width="4" height="80" fill="#c9a84c" />
-        <ellipse cx="52" cy="78" rx="20" ry="8" fill="#f9ca24" opacity="0.7" />
-        <text x="200" y="265" textAnchor="middle" fill="#6b4226" fontSize="14" fontFamily="Georgia" opacity="0.9">Habitaciones Confort</text>
-      </svg>
-    ),
+    bg: '#2d1a0a',
+    svgContent: <ImageSlider images={['/habitacion1.jpeg', '/habitacion2.jpeg', '/habitacion3.jpeg', '/habitacion4.jpeg', '/habitacion5.jpeg']} alt="Habitaciones Confort - Villa Letty" />,
   },
   {
     id: 3,
