@@ -2,7 +2,7 @@
 import Image from 'next/image'
 
 const stats = [
-  { value: '15+', label: 'Años de Historia' },
+  { value: '30+', label: 'Años de Historia' },
   { value: '5k m²', label: 'De Naturaleza' },
   { value: '500+', label: 'Familias Felices' },
   { value: '∞', label: 'Memorias Creadas' },
@@ -22,7 +22,7 @@ export default function Nosotros() {
             className="text-verde-oscuro mb-4"
             style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 5vw, 3rem)' }}
           >
-            Sobre Nosotros
+            Sobre nosotros
           </h2>
           <div className="flex items-center justify-center gap-3">
             <div className="h-px w-12 bg-dorado" />
@@ -41,7 +41,7 @@ export default function Nosotros() {
               "Un lugar donde el tiempo se detiene y la naturaleza te abraza."
             </p>
             <p className="text-verde-oscuro/80 leading-relaxed font-sans font-light">
-              Villa Letty nació hace más de 15 años del sueño de una familia que quería compartir
+              Villa Letty nació hace más de 30 años del sueño de una familia que quería compartir
               la belleza natural de Chinauta con el mundo. Ubicada en el corazón cálido de
               Cundinamarca, nuestra finca se ha convertido en el refugio favorito de familias
               que buscan escapar del ritmo acelerado de la ciudad.
@@ -83,7 +83,7 @@ export default function Nosotros() {
             {/* Floating badge */}
             <div className="absolute -bottom-5 -left-5 bg-verde-oscuro text-crema px-6 py-4 shadow-xl">
               <p className="font-sans font-light text-xs tracking-widest uppercase text-dorado mb-1">Desde</p>
-              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem' }}>2008</p>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem' }}>1990</p>
             </div>
 
             {/* Gold border accent */}
