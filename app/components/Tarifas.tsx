@@ -1,3 +1,5 @@
+'use client'
+
 const habitaciones = [
   {
     titulo: 'Habitación x 6',
