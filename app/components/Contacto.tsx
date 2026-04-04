@@ -11,7 +11,7 @@ const infoItems = [
   {
     icon: '📞',
     title: 'Teléfono / WhatsApp',
-    lines: ['+57 311 494 1865', 'Lunes a Domingo, 7am – 8pm'],
+    lines: ['+57 311 XXX XXXX', 'Lunes a Domingo, 7am – 8pm'],
   },
   {
     icon: '✉️',
@@ -28,9 +28,8 @@ const infoItems = [
 export default function Contacto() {
   const [form, setForm] = useState({
     nombre: '',
-    email: '',
-    telefono: '',
-    fechas: '',
+    llegada: '',
+    salida: '',
     personas: '',
     mensaje: '',
   })
@@ -42,22 +41,21 @@ export default function Contacto() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    const phoneNumber = '573134941865'
+    const phoneNumber = '573242307424'
 
-    // Formatear fecha legible
-    const fechaFormateada = form.fechas
-      ? new Date(form.fechas + 'T12:00:00').toLocaleDateString('es-CO', {
-          day: 'numeric', month: 'long', year: 'numeric'
-        })
-      : 'Por confirmar'
+    const formatFecha = (fecha: string) =>
+      fecha
+        ? new Date(fecha + 'T12:00:00').toLocaleDateString('es-CO', {
+            day: 'numeric', month: 'long', year: 'numeric',
+          })
+        : 'Por confirmar'
 
     const mensaje = [
       '🌿 *Solicitud de Reserva — Villa Letty*',
       '',
       `*Nombre:* ${form.nombre}`,
-      `*Teléfono:* ${form.telefono}`,
-      form.email ? `*Correo:* ${form.email}` : null,
-      `*Fecha de visita:* ${fechaFormateada}`,
+      `*Fecha de llegada:* ${formatFecha(form.llegada)}`,
+      `*Fecha de salida:* ${formatFecha(form.salida)}`,
       form.personas ? `*N° de personas:* ${form.personas}` : null,
       form.mensaje ? `*Mensaje:* ${form.mensaje}` : null,
       '',
@@ -181,48 +179,17 @@ export default function Contacto() {
                   Solicitar Reserva
                 </h3>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-verde-oscuro/70 text-xs uppercase tracking-widest font-sans mb-1.5">
-                        Nombre *
-                      </label>
-                      <input
-                        type="text"
-                        name="nombre"
-                        required
-                        value={form.nombre}
-                        onChange={handleChange}
-                        placeholder="Tu nombre"
-                        className="w-full px-4 py-3 border border-verde-oscuro/20 bg-crema/50 text-verde-oscuro font-sans text-sm focus:outline-none focus:border-dorado transition-colors placeholder-verde-oscuro/30"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-verde-oscuro/70 text-xs uppercase tracking-widest font-sans mb-1.5">
-                        Teléfono *
-                      </label>
-                      <input
-                        type="tel"
-                        name="telefono"
-                        required
-                        value={form.telefono}
-                        onChange={handleChange}
-                        placeholder="+57 300..."
-                        className="w-full px-4 py-3 border border-verde-oscuro/20 bg-crema/50 text-verde-oscuro font-sans text-sm focus:outline-none focus:border-dorado transition-colors placeholder-verde-oscuro/30"
-                      />
-                    </div>
-                  </div>
-
                   <div>
                     <label className="block text-verde-oscuro/70 text-xs uppercase tracking-widest font-sans mb-1.5">
-                      Correo electrónico *
+                      Nombre *
                     </label>
                     <input
-                      type="email"
-                      name="email"
+                      type="text"
+                      name="nombre"
                       required
-                      value={form.email}
+                      value={form.nombre}
                       onChange={handleChange}
-                      placeholder="tu@correo.com"
+                      placeholder="Tu nombre completo"
                       className="w-full px-4 py-3 border border-verde-oscuro/20 bg-crema/50 text-verde-oscuro font-sans text-sm focus:outline-none focus:border-dorado transition-colors placeholder-verde-oscuro/30"
                     />
                   </div>
@@ -230,32 +197,48 @@ export default function Contacto() {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block text-verde-oscuro/70 text-xs uppercase tracking-widest font-sans mb-1.5">
-                        Fecha de visita
+                        Fecha de llegada *
                       </label>
                       <input
                         type="date"
-                        name="fechas"
-                        value={form.fechas}
+                        name="llegada"
+                        required
+                        value={form.llegada}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-verde-oscuro/20 bg-crema/50 text-verde-oscuro font-sans text-sm focus:outline-none focus:border-dorado transition-colors"
                       />
                     </div>
                     <div>
                       <label className="block text-verde-oscuro/70 text-xs uppercase tracking-widest font-sans mb-1.5">
-                        N° de personas
+                        Fecha de salida *
                       </label>
-                      <select
-                        name="personas"
-                        value={form.personas}
+                      <input
+                        type="date"
+                        name="salida"
+                        required
+                        value={form.salida}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-verde-oscuro/20 bg-crema/50 text-verde-oscuro font-sans text-sm focus:outline-none focus:border-dorado transition-colors"
-                      >
-                        <option value="">Seleccionar</option>
-                        {['1-5', '6-10', '11-20', '21-50', '50+'].map((n) => (
-                          <option key={n} value={n}>{n} personas</option>
-                        ))}
-                      </select>
+                      />
                     </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-verde-oscuro/70 text-xs uppercase tracking-widest font-sans mb-1.5">
+                      N° de personas *
+                    </label>
+                    <select
+                      name="personas"
+                      required
+                      value={form.personas}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-verde-oscuro/20 bg-crema/50 text-verde-oscuro font-sans text-sm focus:outline-none focus:border-dorado transition-colors"
+                    >
+                      <option value="">Seleccionar</option>
+                      {['1-5', '6-10', '11-20', '21-50', '50+'].map((n) => (
+                        <option key={n} value={n}>{n} personas</option>
+                      ))}
+                    </select>
                   </div>
 
                   <div>
