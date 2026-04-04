@@ -1,0 +1,202 @@
+const habitaciones = [
+  {
+    titulo: 'Habitación x 6',
+    desc: 'Camarotes para 6 personas con baño privado incluido.',
+    personas: '6 personas',
+    tipo: 'Camarotes',
+  },
+  {
+    titulo: 'Habitación x 8',
+    desc: 'Camarotes para 8 personas con baño privado incluido.',
+    personas: '8 personas',
+    tipo: 'Camarotes',
+  },
+  {
+    titulo: 'Habitación x 10',
+    desc: 'Camarotes para 10 personas con baño privado incluido.',
+    personas: '10 personas',
+    tipo: 'Camarotes',
+  },
+  {
+    titulo: 'Habitación x 12',
+    desc: 'Camarotes para 12 personas con baño privado incluido.',
+    personas: '12 personas',
+    tipo: 'Camarotes',
+  },
+  {
+    titulo: 'Cama Doble',
+    desc: 'Habitación con cama doble y baño privado. Ideal para parejas.',
+    personas: '2 personas',
+    tipo: 'Cama doble',
+  },
+]
+
+const stats = [
+  { valor: '420', label: 'Personas de capacidad' },
+  { valor: '5', label: 'Tipos de habitación' },
+  { valor: '100%', label: 'Con baño privado' },
+]
+
+export default function Tarifas() {
+  return (
+    <section
+      id="tarifas"
+      className="py-28 relative overflow-hidden"
+      style={{ background: '#f5f0e8' }}
+    >
+      {/* Decorative background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(ellipse at 90% 80%, rgba(201,168,76,0.07) 0%, transparent 55%),
+                            radial-gradient(ellipse at 10% 20%, rgba(45,106,79,0.05) 0%, transparent 50%)`,
+        }}
+      />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
+
+        {/* Header */}
+        <div className="text-center mb-20">
+          <span className="text-dorado text-xs tracking-widest uppercase font-sans block mb-4">
+            ✦ Alojamiento & Precios ✦
+          </span>
+          <h2
+            className="text-verde-oscuro mb-5"
+            style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: 400 }}
+          >
+            Tarifas & Capacidad
+          </h2>
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="h-px w-12 bg-dorado" />
+            <div className="w-1.5 h-1.5 rounded-full bg-dorado" />
+            <div className="h-px w-12 bg-dorado" />
+          </div>
+          <p className="text-verde-oscuro/60 max-w-lg mx-auto leading-relaxed font-sans font-light">
+            Contamos con habitaciones para todos los grupos. Todas con baño privado y acceso completo a las instalaciones.
+          </p>
+        </div>
+
+        {/* Precio destacado */}
+        <div
+          className="text-center mb-16 py-10 px-6 relative"
+          style={{
+            background: '#1a3a2a',
+            borderTop: '1px solid rgba(201,168,76,0.3)',
+            borderBottom: '1px solid rgba(201,168,76,0.3)',
+          }}
+        >
+          <p className="text-crema/60 font-sans font-light text-xs tracking-widest uppercase mb-3">
+            Tarifa por noche
+          </p>
+          <div className="flex items-end justify-center gap-3 mb-3">
+            <span
+              className="text-crema/50 font-sans font-light"
+              style={{ fontSize: '1.5rem' }}
+            >
+              $
+            </span>
+            <span
+              className="text-dorado"
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(3rem, 8vw, 5rem)', fontWeight: 300, lineHeight: 1 }}
+            >
+              35.000
+            </span>
+            <span
+              className="text-crema/50 font-sans font-light mb-2"
+              style={{ fontSize: '1.2rem' }}
+            >
+              – $45.000
+            </span>
+          </div>
+          <p className="text-crema/50 font-sans font-light text-sm">por persona · por noche</p>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-6 mt-10 pt-10" style={{ borderTop: '1px solid rgba(245,240,232,0.08)' }}>
+            {stats.map((s) => (
+              <div key={s.label} className="text-center">
+                <p
+                  className="text-dorado mb-1"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '2rem', fontWeight: 300 }}
+                >
+                  {s.valor}
+                </p>
+                <p className="text-crema/45 font-sans font-light text-xs tracking-wide uppercase">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Habitaciones */}
+        <div className="mb-16">
+          <h3
+            className="text-verde-oscuro text-center mb-10"
+            style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem', fontWeight: 400 }}
+          >
+            Tipos de Habitación
+          </h3>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {habitaciones.map((h) => (
+              <div
+                key={h.titulo}
+                className="group p-7 bg-white transition-all duration-400 hover:-translate-y-1 hover:shadow-lg"
+                style={{
+                  border: '1px solid rgba(26,58,42,0.08)',
+                  boxShadow: '0 2px 16px rgba(26,58,42,0.05)',
+                }}
+              >
+                {/* Top accent */}
+                <div className="w-0 h-px bg-dorado group-hover:w-full transition-all duration-500 mb-6" />
+
+                {/* Tipo badge */}
+                <span className="inline-block text-dorado font-sans text-xs tracking-widest uppercase mb-4"
+                  style={{ borderBottom: '1px solid rgba(201,168,76,0.3)', paddingBottom: '4px' }}
+                >
+                  {h.tipo}
+                </span>
+
+                <h4
+                  className="text-verde-oscuro mb-2"
+                  style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.15rem', fontWeight: 400 }}
+                >
+                  {h.titulo}
+                </h4>
+
+                <p className="text-verde-oscuro/60 font-sans font-light text-sm leading-relaxed mb-5">
+                  {h.desc}
+                </p>
+
+                {/* Capacidad */}
+                <div className="flex items-center gap-2">
+                  <div className="w-1 h-1 rounded-full bg-dorado flex-shrink-0" />
+                  <span className="text-verde-oscuro/70 font-sans text-xs tracking-wide">
+                    Capacidad: <strong className="text-verde-oscuro font-normal">{h.personas}</strong>
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Nota incluido + CTA */}
+        <div className="text-center">
+          <p className="text-verde-oscuro/50 font-sans font-light text-sm mb-2">
+            ✦ Todas las habitaciones incluyen acceso a piscinas, zonas comunes y actividades recreativas.
+          </p>
+          <p className="text-verde-oscuro/40 font-sans font-light text-xs mb-8">
+            Las tarifas pueden variar en temporada alta. Consulta disponibilidad antes de reservar.
+          </p>
+          <a
+            href="#contacto"
+            className="inline-block px-10 py-4 bg-verde-oscuro text-crema font-sans text-sm tracking-widest uppercase hover:bg-verde-medio transition-all duration-300 font-light"
+          >
+            Consultar Disponibilidad
+          </a>
+        </div>
+
+      </div>
+    </section>
+  )
+}
