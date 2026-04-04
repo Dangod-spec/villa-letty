@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import Image from 'next/image'
 
 const infoItems = [
   {
@@ -123,11 +124,15 @@ export default function Contacto() {
 
             {/* Imagen real de la finca */}
             <div className="relative rounded-sm overflow-hidden border border-verde-oscuro/10 shadow-md">
-              <img
-                src="/maps.jpg"
-                alt="Vista de Villa Letty - Chinauta"
-                className="w-full h-64 object-cover"
-              />
+              <div className="relative w-full h-64">
+                <Image
+                  src="/maps.jpg"
+                  alt="Vista de Villa Letty - Chinauta"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
               <div className="absolute inset-0 flex items-end justify-center pb-4">
                 <a
                   href="https://www.google.com/maps/place/Centro+Vacacional+Villa+Lety/@4.2855072,-74.4724188,17z/data=!4m10!1m2!2m1!1svilla+letty!3m6!1s0x8e3f1c48caf5d1e7:0xee4b053585893b1b!8m2!3d4.2855072!4d-74.4702301!15sCgt2aWxsYSBsZXR0eZIBBWhvdGVs4AEA!16s%2Fg%2F11b7hmgf4t?entry=ttu&g_ep=EgoyMDI2MDMyOS4wIKXMDSoASAFQAw%3D%3D"
