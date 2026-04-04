@@ -94,7 +94,7 @@ const galeríaItems = [
   },
 ]
 
-const categories = ['Todos', 'Recreación', 'Hospedaje', 'Naturaleza', "Espacios comunes']
+const categories = ['Todos', 'Recreación', 'Hospedaje', 'Naturaleza', 'Espacios comunes']
 
 export default function Galeria() {
   const [activeCategory, setActiveCategory] = useState('Todos')
