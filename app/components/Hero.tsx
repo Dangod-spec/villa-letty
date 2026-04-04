@@ -1,14 +1,18 @@
 'use client'
+import Image from 'next/image'
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Imagen real de fondo con overlay oscuro */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src="/portada.png"
           alt="Villa Letty - Chinauta"
-          className="w-full h-full object-cover"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
         />
         <div
           className="absolute inset-0"
@@ -55,10 +59,24 @@ export default function Hero() {
           <div className="h-px w-16 bg-dorado/60" />
         </div>
 
+        {/* Propuesta de valor */}
+        <div className="animate-fade-in opacity-0 flex flex-wrap items-center justify-center gap-2 mb-6 delay-300" style={{animationFillMode:'forwards'}}>
+          {['Piscinas', 'Alojamiento', 'Gastronomía', 'Eventos', 'Naturaleza'].map((item, i, arr) => (
+            <span key={item} className="flex items-center gap-2">
+              <span className="text-crema/90 font-sans font-light text-sm tracking-widest uppercase">
+                {item}
+              </span>
+              {i < arr.length - 1 && (
+                <span className="text-dorado/60 text-xs">·</span>
+              )}
+            </span>
+          ))}
+        </div>
+
         {/* Subtitle */}
         <p
-          className="animate-fade-up opacity-0 text-crema/85 font-sans font-light mb-12 max-w-xl mx-auto delay-300 leading-relaxed"
-          style={{ fontSize: '1.1rem', animationFillMode: 'forwards' }}
+          className="animate-fade-up opacity-0 text-crema/70 font-sans font-light mb-12 max-w-xl mx-auto delay-300 leading-relaxed"
+          style={{ fontSize: '1rem', animationFillMode: 'forwards' }}
         >
           Tu refugio de paz y naturaleza en las cálidas tierras de Chinauta.
           Descanso, aventura y momentos inolvidables en familia.
