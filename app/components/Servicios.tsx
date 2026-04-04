@@ -10,7 +10,7 @@ const servicios = [
   {
     numero: '02',
     title: 'Alojamiento campestre',
-    desc: 'Habitaciones y cabañas privadas con materiales naturales y toda la comodidad moderna para un descanso verdaderamente reparador.',
+    desc: 'Habitaciones con toda la comodidad moderna para un descanso verdaderamente reparador.',
     detalle: 'Disponible fines de semana y festivos',
   },
   {
@@ -22,7 +22,7 @@ const servicios = [
   {
     numero: '04',
     title: 'Actividades recreativas',
-    desc: 'Canchas de fútbol, voleibol, ping pong, senderos naturales y juegos infantiles. Entretenimiento garantizado para toda la familia.',
+    desc: 'Canchas de fútbol, voleibol y ping pong. Entretenimiento garantizado para toda la familia.',
     detalle: 'Disponible todo el día',
   },
   {
