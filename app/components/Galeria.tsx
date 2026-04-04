@@ -85,7 +85,7 @@ const galeríaItems = [
     title: 'Habitaciones confort',
     category: 'Hospedaje',
     bg: '#2d1a0a',
-    svgContent: <ImageSlider images={['/habitacion.jpeg', '/habitacion2.jpeg', '/habitacion3.jpeg', '/habitacion4.jpeg', '/habitacion5.jpeg']} alt="Habitaciones confort - Villa Letty" />,
+    svgContent: <ImageSlider images={['/habitacion1.jpeg', '/habitacion2.jpeg', '/habitacion3.jpeg', '/habitacion4.jpeg', '/habitacion5.jpeg']} alt="Habitaciones confort - Villa Letty" />,
   },
   {
     id: 3,
@@ -96,17 +96,17 @@ const galeríaItems = [
   },
   {
     id: 5,
-    title: 'Canchas múltiples',
+    title: 'Cancha Múltiple',
     category: 'Recreación',
     bg: '#1a3a2a',
-    svgContent: <ImageSlider images={['/cancha1.jpeg', '/cancha2.jpeg']} alt="Canchas múltiples - Villa Letty" />,
+    svgContent: <ImageSlider images={['/cancha1.jpeg', '/cancha2.jpeg']} alt="Cancha Múltiple - Villa Letty" />,
   },
   {
     id: 6,
     title: 'Salones',
     category: 'Espacios',
     bg: '#2d1a0a',
-    svgContent: <ImageSlider images={['/salon1.jpeg', '/salon2.jpeg', '/salon3.jpeg', '/salon4.jpeg', '/salon5.jpeg', '/salon6.jpeg', '/salon7.jpeg']} alt="Comedor Principal - Villa Letty" />,
+    svgContent: <ImageSlider images={['/salon1.jpeg', '/salon2.jpeg', '/salon3.jpeg', '/salon4.jpeg', '/salon5.jpeg', '/salon6.jpeg', '/salon7.jpeg']} alt="Salones - Villa Letty" />,
   },
 ]
 
