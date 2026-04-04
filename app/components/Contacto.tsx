@@ -41,7 +41,7 @@ export default function Contacto() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    const phoneNumber = '573242307424'
+    const phoneNumber = '573134941865'
 
     const formatFecha = (fecha: string) =>
       fecha
