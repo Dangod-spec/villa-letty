@@ -1,5 +1,6 @@
 'use client'
 import { useState, useEffect, useCallback } from 'react'
+import Image from 'next/image'
 
 // Slider component for gallery items with multiple images
 function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
@@ -17,13 +18,20 @@ function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
   return (
     <div className="relative w-full h-full overflow-hidden">
       {images.map((src, i) => (
-        <img
+        <div
           key={src}
-          src={src}
-          alt={alt}
-          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+          className="absolute inset-0 transition-opacity duration-700"
           style={{ opacity: i === current ? 1 : 0 }}
-        />
+        >
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            loading="lazy"
+          />
+        </div>
       ))}
       {/* Dots */}
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
@@ -51,28 +59,28 @@ function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
 const galeríaItems = [
   {
     id: 1,
-    title: 'Piscina principal',
+    title: 'Piscina Principal',
     category: 'Recreación',
     bg: '#000',
     svgContent: <ImageSlider images={['/piscina.png', '/piscina2.jpeg']} alt="Piscina Principal - Villa Letty" />,
   },
   {
     id: 2,
-    title: 'Habitaciones onfort',
+    title: 'Habitaciones Confort',
     category: 'Hospedaje',
     bg: '#2d1a0a',
-    svgContent: <ImageSlider images={['/habitacion.jpeg', '/habitacion2.jpeg', '/habitacion3.jpeg', '/habitacion4.jpeg', '/habitacion5.jpeg']} alt="Habitaciones Confort - Villa Letty" />,
+    svgContent: <ImageSlider images={['/habitacion1.jpeg', '/habitacion2.jpeg', '/habitacion3.jpeg', '/habitacion4.jpeg', '/habitacion5.jpeg']} alt="Habitaciones Confort - Villa Letty" />,
   },
   {
     id: 3,
-    title: 'Jardines tropicales',
+    title: 'Jardines Tropicales',
     category: 'Naturaleza',
     bg: '#1a3a2a',
     svgContent: <ImageSlider images={['/jardin1.png', '/jardin2.png']} alt="Jardines Tropicales - Villa Letty" />,
   },
   {
     id: 4,
-    title: 'Zona de fogón',
+    title: 'Zona de Fogón',
     category: 'Gastronomía',
     bg: 'linear-gradient(135deg, #6b4226 0%, #e17055 100%)',
     svgContent: (
@@ -113,14 +121,14 @@ const galeríaItems = [
   },
   {
     id: 5,
-    title: 'Cancha múltiple',
+    title: 'Cancha Múltiple',
     category: 'Recreación',
     bg: '#1a3a2a',
     svgContent: <ImageSlider images={['/cancha1.jpeg', '/cancha2.jpeg']} alt="Cancha Múltiple - Villa Letty" />,
   },
   {
     id: 6,
-    title: 'Salones',
+    title: 'Comedor Principal',
     category: 'Gastronomía',
     bg: '#2d1a0a',
     svgContent: <ImageSlider images={['/salon1.jpeg', '/salon2.jpeg', '/salon3.jpeg', '/salon4.jpeg', '/salon5.jpeg', '/salon6.jpeg', '/salon7.jpeg']} alt="Comedor Principal - Villa Letty" />,
