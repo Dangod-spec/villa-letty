@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
 
-// Slider component for gallery items with multiple images
+// ── ImageSlider (grid only, sin flechas) ─────────────────────────────────────
 function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
   const [current, setCurrent] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
@@ -12,7 +12,6 @@ function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
     setCurrent((prev) => (prev + 1) % images.length)
   }, [images.length])
 
-  // Pausar cuando el slider no está en el viewport
   useEffect(() => {
     const el = containerRef.current
     if (!el) return
@@ -24,7 +23,6 @@ function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
     return () => observer.disconnect()
   }, [])
 
-  // Solo correr el intervalo cuando es visible
   useEffect(() => {
     if (!isVisible) return
     const timer = setInterval(next, 3000)
@@ -49,89 +47,63 @@ function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
           />
         </div>
       ))}
-      {/* Dots */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-        {images.map((_, i) => (
-          <button
-            key={i}
-            onClick={(e) => { e.stopPropagation(); setCurrent(i) }}
-            className="w-1.5 h-1.5 rounded-full transition-all duration-300"
-            style={{ background: i === current ? '#c9a84c' : 'rgba(255,255,255,0.5)' }}
-          />
-        ))}
-      </div>
+      {images.length > 1 && (
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={(e) => { e.stopPropagation(); setCurrent(i) }}
+              className="w-1.5 h-1.5 rounded-full transition-all duration-300"
+              style={{ background: i === current ? '#c9a84c' : 'rgba(255,255,255,0.5)' }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
 
-// Imágenes por item para el lightbox
-const itemImages: Record<number, { src: string; alt: string }[]> = {
-  1: [
-    { src: '/piscina.png', alt: 'Piscina - Villa Letty' },
-    { src: '/piscina2.jpeg', alt: 'Piscina - Villa Letty' },
-  ],
-  2: [
-    { src: '/habitacion.jpeg', alt: 'Habitaciones confort - Villa Letty' },
-    { src: '/habitacion2.jpeg', alt: 'Habitaciones confort - Villa Letty' },
-    { src: '/habitacion3.jpeg', alt: 'Habitaciones confort - Villa Letty' },
-    { src: '/habitacion4.jpeg', alt: 'Habitaciones confort - Villa Letty' },
-    { src: '/habitacion5.jpeg', alt: 'Habitaciones confort - Villa Letty' },
-  ],
-  3: [
-    { src: '/jardin1.png', alt: 'Jardines tropicales - Villa Letty' },
-    { src: '/jardin2.png', alt: 'Jardines tropicales - Villa Letty' },
-  ],
-  5: [
-    { src: '/cancha1.jpeg', alt: 'Cancha Múltiple - Villa Letty' },
-    { src: '/cancha2.jpeg', alt: 'Cancha Múltiple - Villa Letty' },
-  ],
-  6: [
-    { src: '/salon1.jpeg', alt: 'Salones - Villa Letty' },
-    { src: '/salon2.jpeg', alt: 'Salones - Villa Letty' },
-    { src: '/salon3.jpeg', alt: 'Salones - Villa Letty' },
-    { src: '/salon4.jpeg', alt: 'Salones - Villa Letty' },
-    { src: '/salon5.jpeg', alt: 'Salones - Villa Letty' },
-    { src: '/salon6.jpeg', alt: 'Salones - Villa Letty' },
-    { src: '/salon7.jpeg', alt: 'Salones - Villa Letty' },
-  ],
-}
-
-// SVG placeholder images simulating different areas of the finca
+// ── Datos — imágenes directamente en cada item ────────────────────────────────
 const galeríaItems = [
   {
     id: 1,
     title: 'Piscina',
     category: 'Recreación',
     bg: '#000',
-    svgContent: <ImageSlider images={['/piscina.png', '/piscina2.jpeg']} alt="Piscina - Villa Letty" />,
+    images: ['/piscina.png', '/piscina2.jpeg'],
+    alt: 'Piscina - Villa Letty',
   },
   {
     id: 2,
     title: 'Habitaciones confort',
     category: 'Hospedaje',
     bg: '#2d1a0a',
-    svgContent: <ImageSlider images={['/habitacion.jpeg', '/habitacion2.jpeg', '/habitacion3.jpeg', '/habitacion4.jpeg', '/habitacion5.jpeg']} alt="Habitaciones confort - Villa Letty" />,
+    images: ['/habitacion.jpeg', '/habitacion2.jpeg', '/habitacion3.jpeg', '/habitacion4.jpeg', '/habitacion5.jpeg'],
+    alt: 'Habitaciones confort - Villa Letty',
   },
   {
     id: 3,
     title: 'Jardines tropicales',
     category: 'Naturaleza',
     bg: '#1a3a2a',
-    svgContent: <ImageSlider images={['/jardin1.png', '/jardin2.png']} alt="Jardines tropicales - Villa Letty" />,
+    images: ['/jardin1.png', '/jardin2.png'],
+    alt: 'Jardines tropicales - Villa Letty',
   },
   {
     id: 5,
     title: 'Cancha Múltiple',
     category: 'Recreación',
     bg: '#1a3a2a',
-    svgContent: <ImageSlider images={['/cancha1.jpeg', '/cancha2.jpeg']} alt="Cancha Múltiple - Villa Letty" />,
+    images: ['/cancha1.jpeg', '/cancha2.jpeg'],
+    alt: 'Cancha Múltiple - Villa Letty',
   },
   {
     id: 6,
     title: 'Salones',
     category: 'Espacios',
     bg: '#2d1a0a',
-    svgContent: <ImageSlider images={['/salon1.jpeg', '/salon2.jpeg', '/salon3.jpeg', '/salon4.jpeg', '/salon5.jpeg', '/salon6.jpeg', '/salon7.jpeg']} alt="Salones - Villa Letty" />,
+    images: ['/salon1.jpeg', '/salon2.jpeg', '/salon3.jpeg', '/salon4.jpeg', '/salon5.jpeg', '/salon6.jpeg', '/salon7.jpeg'],
+    alt: 'Salones - Villa Letty',
   },
 ]
 
@@ -142,11 +114,17 @@ export default function Galeria() {
   const [activeItem, setActiveItem] = useState<number | null>(null)
   const [activePhoto, setActivePhoto] = useState(0)
 
-  const photos = activeItem ? (itemImages[activeItem] ?? []) : []
+  const currentItem = galeríaItems.find((i) => i.id === activeItem) ?? null
 
   const closeLightbox = () => { setActiveItem(null); setActivePhoto(0) }
-  const prevPhoto = () => setActivePhoto((p) => (p - 1 + photos.length) % photos.length)
-  const nextPhoto = () => setActivePhoto((p) => (p + 1) % photos.length)
+  const prevPhoto = () => {
+    if (!currentItem) return
+    setActivePhoto((p) => (p - 1 + currentItem.images.length) % currentItem.images.length)
+  }
+  const nextPhoto = () => {
+    if (!currentItem) return
+    setActivePhoto((p) => (p + 1) % currentItem.images.length)
+  }
 
   // Teclado: ← → entre fotos del item activo, Escape cierra
   useEffect(() => {
@@ -211,7 +189,7 @@ export default function Galeria() {
               onClick={() => { setActiveItem(item.id); setActivePhoto(0) }}
             >
               <div className="inner w-full aspect-[4/3] rounded-sm overflow-hidden" style={{ background: item.bg }}>
-                {item.svgContent}
+                <ImageSlider images={item.images} alt={item.alt} />
               </div>
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-verde-oscuro/0 group-hover:bg-verde-oscuro/40 transition-all duration-400 flex items-center justify-center rounded-sm">
@@ -231,13 +209,13 @@ export default function Galeria() {
         </div>
 
         {/* Lightbox */}
-        {activeItem && photos.length > 0 && (
+        {activeItem && currentItem && (
           <div
             className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
             onClick={closeLightbox}
           >
             {/* Flecha izquierda */}
-            {photos.length > 1 && (
+            {currentItem.images.length > 1 && (
               <button
                 onClick={(e) => { e.stopPropagation(); prevPhoto() }}
                 className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 text-white flex items-center justify-center text-xl transition-all z-10"
@@ -251,65 +229,61 @@ export default function Galeria() {
               className="relative w-full max-w-3xl bg-verde-oscuro rounded-sm overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {(() => {
-                const item = galeríaItems.find((i) => i.id === activeItem)!
-                const photo = photos[activePhoto]
-                return (
-                  <>
-                    <div className="relative w-full aspect-video" style={{ background: item.bg }}>
-                      <Image
-                        src={photo.src}
-                        alt={photo.alt}
-                        fill
-                        className="object-cover"
-                        sizes="100vw"
-                      />
-                    </div>
-                    <div className="p-5 flex items-center justify-between">
-                      <div>
-                        <p className="text-dorado text-xs uppercase tracking-widest font-sans mb-1">{item.category}</p>
-                        <p className="text-crema font-serif text-xl" style={{ fontFamily: "'Playfair Display', serif" }}>
-                          {item.title}
-                        </p>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        {photos.length > 1 && (
-                          <span className="text-crema/40 font-sans text-xs">
-                            {activePhoto + 1} / {photos.length}
-                          </span>
-                        )}
-                        {photos.length > 1 && (
-                          <span className="hidden md:block text-crema/30 font-sans text-xs">← → esc</span>
-                        )}
-                        <button
-                          onClick={closeLightbox}
-                          className="text-crema/60 hover:text-crema text-2xl transition-colors"
-                          aria-label="Cerrar"
-                        >
-                          ✕
-                        </button>
-                      </div>
-                    </div>
-                    {/* Dots lightbox */}
-                    {photos.length > 1 && (
-                      <div className="flex justify-center gap-2 pb-4">
-                        {photos.map((_, i) => (
-                          <button
-                            key={i}
-                            onClick={() => setActivePhoto(i)}
-                            className="w-1.5 h-1.5 rounded-full transition-all duration-300"
-                            style={{ background: i === activePhoto ? '#c9a84c' : 'rgba(255,255,255,0.3)' }}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </>
-                )
-              })()}
+              {/* Foto activa */}
+              <div className="relative w-full aspect-video" style={{ background: currentItem.bg }}>
+                <Image
+                  src={currentItem.images[activePhoto]}
+                  alt={currentItem.alt}
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                />
+              </div>
+
+              {/* Footer */}
+              <div className="p-5 flex items-center justify-between">
+                <div>
+                  <p className="text-dorado text-xs uppercase tracking-widest font-sans mb-1">{currentItem.category}</p>
+                  <p className="text-crema font-serif text-xl" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    {currentItem.title}
+                  </p>
+                </div>
+                <div className="flex items-center gap-4">
+                  {currentItem.images.length > 1 && (
+                    <span className="text-crema/40 font-sans text-xs">
+                      {activePhoto + 1} / {currentItem.images.length}
+                    </span>
+                  )}
+                  {currentItem.images.length > 1 && (
+                    <span className="hidden md:block text-crema/30 font-sans text-xs">← → esc</span>
+                  )}
+                  <button
+                    onClick={closeLightbox}
+                    className="text-crema/60 hover:text-crema text-2xl transition-colors"
+                    aria-label="Cerrar"
+                  >
+                    ✕
+                  </button>
+                </div>
+              </div>
+
+              {/* Dots lightbox */}
+              {currentItem.images.length > 1 && (
+                <div className="flex justify-center gap-2 pb-4">
+                  {currentItem.images.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActivePhoto(i)}
+                      className="w-1.5 h-1.5 rounded-full transition-all duration-300"
+                      style={{ background: i === activePhoto ? '#c9a84c' : 'rgba(255,255,255,0.3)' }}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Flecha derecha */}
-            {photos.length > 1 && (
+            {currentItem.images.length > 1 && (
               <button
                 onClick={(e) => { e.stopPropagation(); nextPhoto() }}
                 className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 hover:bg-black/50 text-white flex items-center justify-center text-xl transition-all z-10"
