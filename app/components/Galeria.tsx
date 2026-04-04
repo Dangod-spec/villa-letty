@@ -1,22 +1,38 @@
 'use client'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import Image from 'next/image'
 
 // Slider component for gallery items with multiple images
 function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
   const [current, setCurrent] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const next = useCallback(() => {
     setCurrent((prev) => (prev + 1) % images.length)
   }, [images.length])
 
+  // Pausar cuando el slider no está en el viewport
   useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.2 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  // Solo correr el intervalo cuando es visible
+  useEffect(() => {
+    if (!isVisible) return
     const timer = setInterval(next, 3000)
     return () => clearInterval(timer)
-  }, [next])
+  }, [next, isVisible])
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div ref={containerRef} className="relative w-full h-full overflow-hidden">
       {images.map((src, i) => (
         <div
           key={src}
@@ -59,42 +75,83 @@ function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
 const galeríaItems = [
   {
     id: 1,
-    title: 'Piscina principal',
+    title: 'Piscina Principal',
     category: 'Recreación',
     bg: '#000',
     svgContent: <ImageSlider images={['/piscina.png', '/piscina2.jpeg']} alt="Piscina Principal - Villa Letty" />,
   },
   {
     id: 2,
-    title: 'Habitaciones confort',
+    title: 'Habitaciones Confort',
     category: 'Hospedaje',
     bg: '#2d1a0a',
-    svgContent: <ImageSlider images={['/habitacion.jpeg', '/habitacion2.jpeg', '/habitacion3.jpeg', '/habitacion4.jpeg', '/habitacion5.jpeg']} alt="Habitaciones Confort - Villa Letty" />,
+    svgContent: <ImageSlider images={['/habitacion1.jpeg', '/habitacion2.jpeg', '/habitacion3.jpeg', '/habitacion4.jpeg', '/habitacion5.jpeg']} alt="Habitaciones Confort - Villa Letty" />,
   },
   {
     id: 3,
-    title: 'Jardines tropicales',
+    title: 'Jardines Tropicales',
     category: 'Naturaleza',
     bg: '#1a3a2a',
     svgContent: <ImageSlider images={['/jardin1.png', '/jardin2.png']} alt="Jardines Tropicales - Villa Letty" />,
   },
   {
+    id: 4,
+    title: 'Zona de Fogón',
+    category: 'Gastronomía',
+    bg: 'linear-gradient(135deg, #6b4226 0%, #e17055 100%)',
+    svgContent: (
+      <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        <rect width="400" height="280" fill="#1a0a00" />
+        {/* Night sky */}
+        {[30,80,150,220,300,360,60,180,280].map((x, i) => (
+          <circle key={i} cx={x} cy={20 + (i % 3) * 15} r="1.5" fill="white" opacity="0.7" />
+        ))}
+        {/* Ground */}
+        <rect x="0" y="220" width="400" height="60" fill="#2d1a0a" />
+        {/* Bonfire stones */}
+        {[140,160,180,200,220,240,260].map((x, i) => (
+          <ellipse key={i} cx={x} cy={222} rx="12" ry="6" fill="#808080" />
+        ))}
+        {/* Fire */}
+        <ellipse cx="200" cy="215" rx="40" ry="12" fill="#e17055" opacity="0.8" />
+        <path d="M170,215 Q180,180 200,160 Q210,180 195,195 Q215,170 225,150 Q235,175 220,200 Q240,170 250,145 Q255,170 235,210 Z" fill="#f9ca24" opacity="0.9" />
+        <path d="M180,215 Q190,185 200,165 Q205,185 198,200 Z" fill="white" opacity="0.3" />
+        {/* Glow */}
+        <ellipse cx="200" cy="215" rx="80" ry="30" fill="#e17055" opacity="0.15" />
+        <ellipse cx="200" cy="215" rx="120" ry="45" fill="#f9ca24" opacity="0.07" />
+        {/* Log */}
+        <rect x="155" y="218" width="90" height="10" rx="5" fill="#6b4226" />
+        {/* People silhouettes */}
+        <circle cx="100" cy="190" r="12" fill="#1a0a00" />
+        <rect x="93" y="202" width="14" height="20" rx="3" fill="#1a0a00" />
+        <circle cx="300" cy="185" r="12" fill="#1a0a00" />
+        <rect x="293" y="197" width="14" height="22" rx="3" fill="#1a0a00" />
+        <circle cx="140" cy="195" r="10" fill="#1a0a00" />
+        <rect x="134" y="205" width="12" height="18" rx="3" fill="#1a0a00" />
+        {/* Chairs */}
+        <rect x="85" y="218" width="28" height="5" rx="2" fill="#6b4226" />
+        <rect x="283" y="215" width="28" height="5" rx="2" fill="#6b4226" />
+        <text x="200" y="268" textAnchor="middle" fill="#c9a84c" fontSize="13" fontFamily="Georgia">Noches de Fogón</text>
+      </svg>
+    ),
+  },
+  {
     id: 5,
-    title: 'Canchas múltiple',
+    title: 'Cancha Múltiple',
     category: 'Recreación',
     bg: '#1a3a2a',
     svgContent: <ImageSlider images={['/cancha1.jpeg', '/cancha2.jpeg']} alt="Cancha Múltiple - Villa Letty" />,
   },
   {
     id: 6,
-    title: 'Salones',
-    category: 'Espacios comunes',
+    title: 'Comedor Principal',
+    category: 'Gastronomía',
     bg: '#2d1a0a',
     svgContent: <ImageSlider images={['/salon1.jpeg', '/salon2.jpeg', '/salon3.jpeg', '/salon4.jpeg', '/salon5.jpeg', '/salon6.jpeg', '/salon7.jpeg']} alt="Comedor Principal - Villa Letty" />,
   },
 ]
 
-const categories = ['Todos', 'Recreación', 'Hospedaje', 'Naturaleza', 'Espacios comunes']
+const categories = ['Todos', 'Recreación', 'Hospedaje', 'Naturaleza', 'Gastronomía']
 
 export default function Galeria() {
   const [activeCategory, setActiveCategory] = useState('Todos')
