@@ -2,6 +2,222 @@
 import { useState } from 'react'
 import Image from 'next/image'
 
+// ── DateRangePicker ──────────────────────────────────────────────────────────
+const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
+const DIAS  = ['D','L','M','X','J','V','S']
+
+function getDaysInMonth(year: number, month: number) {
+  return new Date(year, month + 1, 0).getDate()
+}
+function getFirstDayOfMonth(year: number, month: number) {
+  return new Date(year, month, 1).getDay()
+}
+function toISO(year: number, month: number, day: number) {
+  return `${year}-${String(month + 1).padStart(2,'0')}-${String(day).padStart(2,'0')}`
+}
+function parseISO(iso: string) {
+  if (!iso) return null
+  const [y, m, d] = iso.split('-').map(Number)
+  return { year: y, month: m - 1, day: d }
+}
+function isSameDay(iso: string, year: number, month: number, day: number) {
+  return iso === toISO(year, month, day)
+}
+function isBetween(iso: string, start: string, end: string) {
+  return iso > start && iso < end
+}
+
+interface DateRangePickerProps {
+  llegada: string
+  salida: string
+  onChangeLlegada: (v: string) => void
+  onChangeSalida: (v: string) => void
+}
+
+function DateRangePicker({ llegada, salida, onChangeLlegada, onChangeSalida }: DateRangePickerProps) {
+  const today = new Date()
+  const [viewYear, setViewYear]   = useState(today.getFullYear())
+  const [viewMonth, setViewMonth] = useState(today.getMonth())
+  const [selecting, setSelecting] = useState<'llegada' | 'salida'>('llegada')
+  const [hovered, setHovered]     = useState('')
+
+  const prevMonth = () => {
+    if (viewMonth === 0) { setViewYear(y => y - 1); setViewMonth(11) }
+    else setViewMonth(m => m - 1)
+  }
+  const nextMonth = () => {
+    if (viewMonth === 11) { setViewYear(y => y + 1); setViewMonth(0) }
+    else setViewMonth(m => m + 1)
+  }
+
+  // second month
+  const month2 = viewMonth === 11 ? 0 : viewMonth + 1
+  const year2  = viewMonth === 11 ? viewYear + 1 : viewYear
+
+  const todayISO = toISO(today.getFullYear(), today.getMonth(), today.getDate())
+
+  function handleDayClick(iso: string) {
+    if (iso < todayISO) return
+    if (selecting === 'llegada') {
+      onChangeLlegada(iso)
+      onChangeSalida('')
+      setSelecting('salida')
+    } else {
+      if (iso <= llegada) {
+        onChangeLlegada(iso)
+        onChangeSalida('')
+        setSelecting('salida')
+      } else {
+        onChangeSalida(iso)
+        setSelecting('llegada')
+      }
+    }
+  }
+
+  function renderMonth(year: number, month: number) {
+    const totalDays = getDaysInMonth(year, month)
+    const firstDay  = getFirstDayOfMonth(year, month)
+    const cells: React.ReactNode[] = []
+
+    // empty cells
+    for (let i = 0; i < firstDay; i++) {
+      cells.push(<div key={`e${i}`} />)
+    }
+
+    for (let d = 1; d <= totalDays; d++) {
+      const iso     = toISO(year, month, d)
+      const isPast  = iso < todayISO
+      const isStart = isSameDay(llegada, year, month, d)
+      const isEnd   = isSameDay(salida, year, month, d)
+      const inRange = llegada && salida
+        ? isBetween(iso, llegada, salida)
+        : llegada && hovered && hovered > llegada
+          ? isBetween(iso, llegada, hovered)
+          : false
+      const isHov   = hovered === iso
+
+      let bg = 'transparent'
+      let textColor = isPast ? 'rgba(26,58,42,0.25)' : '#1a3a2a'
+      let border = 'none'
+      let borderRadius = '50%'
+
+      if (isStart || isEnd) {
+        bg = '#1a3a2a'
+        textColor = '#f5f0e8'
+      } else if (inRange) {
+        bg = 'rgba(26,58,42,0.08)'
+        borderRadius = '0'
+      } else if (isHov && !isPast) {
+        border = '1px solid #c9a84c'
+      }
+
+      // range edges rounding
+      if (isStart && (salida || (hovered > llegada))) borderRadius = '50% 0 0 50%'
+      if (isEnd) borderRadius = '0 50% 50% 0'
+      if (isStart && !salida && !hovered) borderRadius = '50%'
+
+      cells.push(
+        <div
+          key={d}
+          onClick={() => !isPast && handleDayClick(iso)}
+          onMouseEnter={() => setHovered(iso)}
+          onMouseLeave={() => setHovered('')}
+          className="flex items-center justify-center text-xs font-sans select-none"
+          style={{
+            height: '32px',
+            cursor: isPast ? 'default' : 'pointer',
+            background: bg,
+            color: textColor,
+            borderRadius,
+            border,
+            fontWeight: isStart || isEnd ? 600 : 400,
+            transition: 'background 0.15s',
+          }}
+        >
+          {d}
+        </div>
+      )
+    }
+    return cells
+  }
+
+  const fmt = (iso: string) => {
+    const p = parseISO(iso)
+    if (!p) return null
+    return `${p.day} ${MESES[p.month].slice(0,3)} ${p.year}`
+  }
+
+  return (
+    <div className="border border-verde-oscuro/15 bg-white shadow-sm" style={{ borderRadius: '2px' }}>
+      {/* Header selección */}
+      <div className="grid grid-cols-2 border-b border-verde-oscuro/10">
+        <button
+          type="button"
+          onClick={() => setSelecting('llegada')}
+          className="p-3 text-left transition-colors"
+          style={{ borderRight: '1px solid rgba(26,58,42,0.1)', background: selecting === 'llegada' ? 'rgba(201,168,76,0.06)' : 'transparent' }}
+        >
+          <p className="text-dorado font-sans text-xs uppercase tracking-widest mb-0.5">Llegada</p>
+          <p className="font-sans text-sm" style={{ color: llegada ? '#1a3a2a' : 'rgba(26,58,42,0.35)', fontWeight: llegada ? 500 : 400 }}>
+            {fmt(llegada) ?? 'Seleccionar fecha'}
+          </p>
+        </button>
+        <button
+          type="button"
+          onClick={() => setSelecting('salida')}
+          className="p-3 text-left transition-colors"
+          style={{ background: selecting === 'salida' ? 'rgba(201,168,76,0.06)' : 'transparent' }}
+        >
+          <p className="text-dorado font-sans text-xs uppercase tracking-widest mb-0.5">Salida</p>
+          <p className="font-sans text-sm" style={{ color: salida ? '#1a3a2a' : 'rgba(26,58,42,0.35)', fontWeight: salida ? 500 : 400 }}>
+            {fmt(salida) ?? 'Seleccionar fecha'}
+          </p>
+        </button>
+      </div>
+
+      {/* Calendarios */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
+        {[{ year: viewYear, month: viewMonth }, { year: year2, month: month2 }].map(({ year, month }, idx) => (
+          <div key={idx} className="p-4" style={{ borderRight: idx === 0 ? '1px solid rgba(26,58,42,0.08)' : 'none' }}>
+            {/* Month nav */}
+            <div className="flex items-center justify-between mb-4">
+              {idx === 0 ? (
+                <button type="button" onClick={prevMonth} className="w-7 h-7 flex items-center justify-center text-verde-oscuro/50 hover:text-dorado transition-colors text-lg">‹</button>
+              ) : <div className="w-7" />}
+              <p className="font-sans text-sm font-medium text-verde-oscuro tracking-wide">
+                {MESES[month]} {year}
+              </p>
+              {idx === 1 ? (
+                <button type="button" onClick={nextMonth} className="w-7 h-7 flex items-center justify-center text-verde-oscuro/50 hover:text-dorado transition-colors text-lg">›</button>
+              ) : <div className="w-7" />}
+            </div>
+            {/* Day headers */}
+            <div className="grid grid-cols-7 mb-1">
+              {DIAS.map(d => (
+                <div key={d} className="text-center font-sans text-xs text-verde-oscuro/40 pb-1">{d}</div>
+              ))}
+            </div>
+            {/* Days grid */}
+            <div className="grid grid-cols-7">
+              {renderMonth(year, month)}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Noches */}
+      {llegada && salida && (
+        <div className="border-t border-verde-oscuro/10 px-4 py-2 text-center">
+          <span className="font-sans text-xs text-verde-oscuro/60">
+            {Math.round((new Date(salida).getTime() - new Date(llegada).getTime()) / 86400000)} noche{Math.round((new Date(salida).getTime() - new Date(llegada).getTime()) / 86400000) !== 1 ? 's' : ''}
+          </span>
+        </div>
+      )}
+    </div>
+  )
+}
+// ────────────────────────────────────────────────────────────────────────────
+
 const infoItems = [
   {
     icon: '📍',
@@ -41,7 +257,7 @@ export default function Contacto() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    const phoneNumber = '573134941865'
+    const phoneNumber = '573242307424'
 
     const formatFecha = (fecha: string) =>
       fecha
@@ -194,33 +410,16 @@ export default function Contacto() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-verde-oscuro/70 text-xs uppercase tracking-widest font-sans mb-1.5">
-                        Fecha de llegada *
-                      </label>
-                      <input
-                        type="date"
-                        name="llegada"
-                        required
-                        value={form.llegada}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-verde-oscuro/20 bg-crema/50 text-verde-oscuro font-sans text-sm focus:outline-none focus:border-dorado transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-verde-oscuro/70 text-xs uppercase tracking-widest font-sans mb-1.5">
-                        Fecha de salida *
-                      </label>
-                      <input
-                        type="date"
-                        name="salida"
-                        required
-                        value={form.salida}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-verde-oscuro/20 bg-crema/50 text-verde-oscuro font-sans text-sm focus:outline-none focus:border-dorado transition-colors"
-                      />
-                    </div>
+                  <div>
+                    <label className="block text-verde-oscuro/70 text-xs uppercase tracking-widest font-sans mb-1.5">
+                      Fechas de estadía *
+                    </label>
+                    <DateRangePicker
+                      llegada={form.llegada}
+                      salida={form.salida}
+                      onChangeLlegada={(v) => setForm(f => ({ ...f, llegada: v }))}
+                      onChangeSalida={(v) => setForm(f => ({ ...f, salida: v }))}
+                    />
                   </div>
 
                   <div>
