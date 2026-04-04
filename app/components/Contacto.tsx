@@ -11,7 +11,7 @@ const infoItems = [
   {
     icon: '📞',
     title: 'Teléfono / WhatsApp',
-    lines: ['+57 311 XXX XXXX', 'Lunes a Domingo, 7am – 8pm'],
+    lines: ['+57 311 494 1865', 'Lunes a Domingo, 7am – 8pm'],
   },
   {
     icon: '✉️',
@@ -34,7 +34,6 @@ export default function Contacto() {
     personas: '',
     mensaje: '',
   })
-  const [enviado, setEnviado] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -42,7 +41,33 @@ export default function Contacto() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setEnviado(true)
+
+    const phoneNumber = '573242307424'
+
+    // Formatear fecha legible
+    const fechaFormateada = form.fechas
+      ? new Date(form.fechas + 'T12:00:00').toLocaleDateString('es-CO', {
+          day: 'numeric', month: 'long', year: 'numeric'
+        })
+      : 'Por confirmar'
+
+    const mensaje = [
+      '🌿 *Solicitud de Reserva — Villa Letty*',
+      '',
+      `*Nombre:* ${form.nombre}`,
+      `*Teléfono:* ${form.telefono}`,
+      form.email ? `*Correo:* ${form.email}` : null,
+      `*Fecha de visita:* ${fechaFormateada}`,
+      form.personas ? `*N° de personas:* ${form.personas}` : null,
+      form.mensaje ? `*Mensaje:* ${form.mensaje}` : null,
+      '',
+      '_Enviado desde villaletty.com_',
+    ]
+      .filter(Boolean)
+      .join('\n')
+
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensaje)}`
+    window.open(url, '_blank')
   }
 
   return (
@@ -148,24 +173,7 @@ export default function Contacto() {
 
           {/* Right: Form */}
           <div className="bg-white/60 backdrop-blur-sm border border-verde-oscuro/10 p-8 shadow-sm">
-            {enviado ? (
-              <div className="h-full flex flex-col items-center justify-center text-center py-10 gap-4">
-                <div className="w-16 h-16 border-2 border-dorado flex items-center justify-center text-3xl">✓</div>
-                <h3 className="text-verde-oscuro text-xl" style={{ fontFamily: "'Playfair Display', serif" }}>
-                  ¡Mensaje Enviado!
-                </h3>
-                <p className="text-verde-oscuro/70 font-sans font-light text-sm max-w-xs">
-                  Gracias por contactarnos. Te responderemos en menos de 24 horas con toda la información sobre tu reserva.
-                </p>
-                <button
-                  onClick={() => setEnviado(false)}
-                  className="mt-4 px-6 py-2 border border-dorado text-dorado text-xs tracking-widest uppercase hover:bg-dorado hover:text-verde-oscuro transition-all"
-                >
-                  Enviar otro mensaje
-                </button>
-              </div>
-            ) : (
-              <>
+            <>
                 <h3
                   className="text-verde-oscuro mb-6 text-xl"
                   style={{ fontFamily: "'Playfair Display', serif" }}
@@ -266,17 +274,19 @@ export default function Contacto() {
 
                   <button
                     type="submit"
-                    className="w-full py-4 bg-verde-oscuro text-crema font-sans text-sm tracking-widest uppercase hover:bg-verde-medio transition-all duration-300 hover:shadow-lg mt-2"
+                    className="w-full py-4 bg-verde-oscuro text-crema font-sans text-sm tracking-widest uppercase hover:bg-verde-medio transition-all duration-300 hover:shadow-lg mt-2 flex items-center justify-center gap-3"
                   >
-                    Enviar Solicitud
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-4 h-4 fill-current" aria-hidden="true">
+                      <path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.466 2.027 7.762L0 32l8.467-2.02A15.934 15.934 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.276 13.276 0 01-6.773-1.853l-.486-.29-5.027 1.2 1.224-4.9-.317-.502A13.267 13.267 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.865c-.398-.199-2.354-1.162-2.72-1.294-.366-.133-.632-.199-.898.199-.266.398-1.03 1.294-1.263 1.56-.232.266-.465.299-.863.1-.398-.2-1.682-.62-3.204-1.98-1.184-1.057-1.983-2.363-2.215-2.761-.232-.398-.025-.613.175-.811.18-.178.398-.465.597-.698.2-.232.266-.398.399-.664.132-.266.066-.498-.034-.697-.1-.2-.898-2.164-1.23-2.962-.324-.778-.653-.672-.898-.685l-.765-.013c-.266 0-.698.1-1.064.498-.366.398-1.396 1.363-1.396 3.327 0 1.963 1.43 3.86 1.629 4.126.2.266 2.814 4.297 6.818 6.027.953.411 1.697.657 2.277.841.957.305 1.828.262 2.517.159.767-.114 2.354-.963 2.686-1.893.333-.93.333-1.727.233-1.893-.099-.166-.365-.266-.763-.465z"/>
+                    </svg>
+                    Enviar por WhatsApp
                   </button>
 
                   <p className="text-verde-oscuro/40 text-xs font-sans text-center">
-                    También puedes contactarnos directamente por WhatsApp para una respuesta inmediata.
+                    Se abrirá WhatsApp con tu solicitud lista para enviar.
                   </p>
                 </form>
-              </>
-            )}
+            </>
           </div>
         </div>
       </div>
