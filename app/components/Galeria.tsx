@@ -51,28 +51,28 @@ function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
 const galeríaItems = [
   {
     id: 1,
-    title: 'Piscina Principal',
+    title: 'Piscina principal',
     category: 'Recreación',
     bg: '#000',
     svgContent: <ImageSlider images={['/piscina.png', '/piscina2.jpeg']} alt="Piscina Principal - Villa Letty" />,
   },
   {
     id: 2,
-    title: 'Habitaciones Confort',
+    title: 'Habitaciones onfort',
     category: 'Hospedaje',
     bg: '#2d1a0a',
     svgContent: <ImageSlider images={['/habitacion.jpeg', '/habitacion2.jpeg', '/habitacion3.jpeg', '/habitacion4.jpeg', '/habitacion5.jpeg']} alt="Habitaciones Confort - Villa Letty" />,
   },
   {
     id: 3,
-    title: 'Jardines Tropicales',
+    title: 'Jardines tropicales',
     category: 'Naturaleza',
     bg: '#1a3a2a',
     svgContent: <ImageSlider images={['/jardin1.png', '/jardin2.png']} alt="Jardines Tropicales - Villa Letty" />,
   },
   {
     id: 4,
-    title: 'Zona de Fogón',
+    title: 'Zona de fogón',
     category: 'Gastronomía',
     bg: 'linear-gradient(135deg, #6b4226 0%, #e17055 100%)',
     svgContent: (
@@ -113,14 +113,14 @@ const galeríaItems = [
   },
   {
     id: 5,
-    title: 'Cancha Múltiple',
+    title: 'Cancha múltiple',
     category: 'Recreación',
     bg: '#1a3a2a',
     svgContent: <ImageSlider images={['/cancha1.jpeg', '/cancha2.jpeg']} alt="Cancha Múltiple - Villa Letty" />,
   },
   {
     id: 6,
-    title: 'Comedor Principal',
+    title: 'Salones',
     category: 'Gastronomía',
     bg: '#2d1a0a',
     svgContent: <ImageSlider images={['/salon1.jpeg', '/salon2.jpeg', '/salon3.jpeg', '/salon4.jpeg', '/salon5.jpeg', '/salon6.jpeg', '/salon7.jpeg']} alt="Comedor Principal - Villa Letty" />,
