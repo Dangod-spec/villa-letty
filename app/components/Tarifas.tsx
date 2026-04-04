@@ -66,7 +66,7 @@ export default function Tarifas() {
             className="text-verde-oscuro mb-5"
             style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 5vw, 3.2rem)', fontWeight: 400 }}
           >
-            Tarifas & Capacidad
+            Tarifas & capacidad
           </h2>
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="h-px w-12 bg-dorado" />
@@ -136,7 +136,7 @@ export default function Tarifas() {
             className="text-verde-oscuro text-center mb-10"
             style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem', fontWeight: 400 }}
           >
-            Tipos de Habitación
+            Tipos de habitación
           </h3>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -194,7 +194,7 @@ export default function Tarifas() {
             href="#contacto"
             className="inline-block px-10 py-4 bg-verde-oscuro text-crema font-sans text-sm tracking-widest uppercase hover:bg-verde-medio transition-all duration-300 font-light"
           >
-            Consultar Disponibilidad
+            Consultar disponibilidad
           </a>
         </div>
 
