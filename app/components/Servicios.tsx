@@ -3,8 +3,8 @@
 const servicios = [
   {
     numero: '01',
-    title: 'Piscinas natural',
-    desc: 'Una piscina de agua cristalina rodeada de naturaleza, perfecta para adultos y niños con diferentes.',
+    title: 'Piscina natural',
+    desc: 'Una piscina de agua cristalina rodeada de naturaleza, perfecta para adultos y niños.',
     detalle: 'Incluido en todos los paquetes',
   },
   {
