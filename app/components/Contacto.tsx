@@ -227,7 +227,7 @@ const infoItems = [
   {
     icon: '📞',
     title: 'Teléfono / WhatsApp',
-    lines: ['+57 311 XXX XXXX', 'Lunes a Domingo, 7am – 8pm'],
+    lines: ['+57 313 494 1865', 'Lunes a Domingo, 7am – 8pm'],
   },
   {
     icon: '✉️',
@@ -257,7 +257,7 @@ export default function Contacto() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    const phoneNumber = '573242307424'
+    const phoneNumber = '573134941865'
 
     const formatFecha = (fecha: string) =>
       fecha
