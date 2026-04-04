@@ -69,7 +69,7 @@ const galeríaItems = [
     title: 'Habitaciones Confort',
     category: 'Hospedaje',
     bg: '#2d1a0a',
-    svgContent: <ImageSlider images={['/habitacion1.jpeg', '/habitacion2.jpeg', '/habitacion3.jpeg', '/habitacion4.jpeg', '/habitacion5.jpeg']} alt="Habitaciones Confort - Villa Letty" />,
+    svgContent: <ImageSlider images={['/habitacion.jpeg', '/habitacion2.jpeg', '/habitacion3.jpeg', '/habitacion4.jpeg', '/habitacion5.jpeg']} alt="Habitaciones Confort - Villa Letty" />,
   },
   {
     id: 3,
