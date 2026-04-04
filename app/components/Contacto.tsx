@@ -227,7 +227,7 @@ const infoItems = [
   {
     icon: '📞',
     title: 'Teléfono / WhatsApp',
-    lines: ['+57 313 494 1865', 'Lunes a Domingo, 7am – 8pm'],
+    lines: ['+57 324 230 7424', 'Lunes a Domingo, 7am – 8pm'],
   },
   {
     icon: '✉️',
@@ -249,6 +249,8 @@ export default function Contacto() {
     personas: '',
     mensaje: '',
   })
+  // Honeypot: campo oculto — si viene lleno, es un bot
+  const [honeypot, setHoneypot] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -257,7 +259,10 @@ export default function Contacto() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    const phoneNumber = '573134941865'
+    // Anti-spam: si el campo honeypot viene lleno, es un bot — no hacer nada
+    if (honeypot) return
+
+    const phoneNumber = '573242307424'
 
     const formatFecha = (fecha: string) =>
       fecha
@@ -308,7 +313,7 @@ export default function Contacto() {
             className="text-verde-oscuro mb-4"
             style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 5vw, 3rem)' }}
           >
-            Contacto & reservas
+            Contacto & Reservas
           </h2>
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="h-px w-12 bg-dorado" />
@@ -328,7 +333,7 @@ export default function Contacto() {
                 className="text-verde-oscuro mb-6 text-xl"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
-                Información de contacto
+                Información de Contacto
               </h3>
               <div className="space-y-5">
                 {infoItems.map((item) => (
@@ -344,6 +349,16 @@ export default function Contacto() {
                             href="https://www.instagram.com/villalettyfinca/?hl=es"
                             target="_blank"
                             rel="noopener noreferrer"
+                            className="block text-verde-oscuro/80 hover:text-dorado font-sans font-light text-sm transition-colors"
+                          >
+                            {item.lines[0]}
+                          </a>
+                          <p className="text-verde-oscuro/60 font-sans font-light text-sm">{item.lines[1]}</p>
+                        </>
+                      ) : item.title === 'Teléfono / WhatsApp' ? (
+                        <>
+                          <a
+                            href="tel:+573242307424"
                             className="block text-verde-oscuro/80 hover:text-dorado font-sans font-light text-sm transition-colors"
                           >
                             {item.lines[0]}
@@ -392,7 +407,7 @@ export default function Contacto() {
                   className="text-verde-oscuro mb-6 text-xl"
                   style={{ fontFamily: "'Playfair Display', serif" }}
                 >
-                  Solicitar reserva
+                  Solicitar Reserva
                 </h3>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
@@ -453,6 +468,18 @@ export default function Contacto() {
                       className="w-full px-4 py-3 border border-verde-oscuro/20 bg-crema/50 text-verde-oscuro font-sans text-sm focus:outline-none focus:border-dorado transition-colors resize-none placeholder-verde-oscuro/30"
                     />
                   </div>
+
+                  {/* Honeypot: invisible para humanos, los bots lo llenan */}
+                  <input
+                    type="text"
+                    name="website"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+                  />
 
                   <button
                     type="submit"
