@@ -1,9 +1,10 @@
 'use client'
+import Image from 'next/image'
 
 const stats = [
-  { value: '30+', label: 'Años de Historia' },
-  { value: '5km²', label: 'De Naturaleza' },
-  { value: '1000+', label: 'Familias Felices' },
+  { value: '15+', label: 'Años de Historia' },
+  { value: '5k m²', label: 'De Naturaleza' },
+  { value: '500+', label: 'Familias Felices' },
   { value: '∞', label: 'Memorias Creadas' },
 ]
 
@@ -40,7 +41,7 @@ export default function Nosotros() {
               "Un lugar donde el tiempo se detiene y la naturaleza te abraza."
             </p>
             <p className="text-verde-oscuro/80 leading-relaxed font-sans font-light">
-              Villa Letty nació hace más de 30 años del sueño de una familia que quería compartir
+              Villa Letty nació hace más de 15 años del sueño de una familia que quería compartir
               la belleza natural de Chinauta con el mundo. Ubicada en el corazón cálido de
               Cundinamarca, nuestra finca se ha convertido en el refugio favorito de familias
               que buscan escapar del ritmo acelerado de la ciudad.
@@ -70,17 +71,19 @@ export default function Nosotros() {
           {/* Imagen real */}
           <div className="relative">
             <div className="w-full aspect-[4/5] rounded-sm overflow-hidden">
-              <img
+              <Image
                 src="/historia.png"
                 alt="Historia de Villa Letty - Chinauta"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
 
             {/* Floating badge */}
             <div className="absolute -bottom-5 -left-5 bg-verde-oscuro text-crema px-6 py-4 shadow-xl">
               <p className="font-sans font-light text-xs tracking-widest uppercase text-dorado mb-1">Desde</p>
-              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem' }}>2016</p>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem' }}>2008</p>
             </div>
 
             {/* Gold border accent */}
