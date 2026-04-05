@@ -116,15 +116,20 @@ export default function Galeria() {
 
   const currentItem = galeríaItems.find((i) => i.id === activeItem) ?? null
 
-  const closeLightbox = () => { setActiveItem(null); setActivePhoto(0) }
-  const prevPhoto = () => {
+  const closeLightbox = useCallback(() => {
+    setActiveItem(null)
+    setActivePhoto(0)
+  }, [])
+
+  const prevPhoto = useCallback(() => {
     if (!currentItem) return
     setActivePhoto((p) => (p - 1 + currentItem.images.length) % currentItem.images.length)
-  }
-  const nextPhoto = () => {
+  }, [currentItem])
+
+  const nextPhoto = useCallback(() => {
     if (!currentItem) return
     setActivePhoto((p) => (p + 1) % currentItem.images.length)
-  }
+  }, [currentItem])
 
   // Teclado: ← → entre fotos del item activo, Escape cierra
   useEffect(() => {
@@ -136,7 +141,7 @@ export default function Galeria() {
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [activeItem, activePhoto])
+  }, [activeItem, closeLightbox, nextPhoto, prevPhoto])
 
   const filtered = activeCategory === 'Todos'
     ? galeríaItems
