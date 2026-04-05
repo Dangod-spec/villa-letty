@@ -232,7 +232,7 @@ const infoItems = [
   {
     icon: '✉️',
     title: 'Correo',
-    lines: ['evangelistagodoy0611@outlook],
+    lines: ['evangelistagodoy0611@outlook'],
   },
   {
     icon: '📸',
