@@ -6,6 +6,14 @@ import Image from 'next/image'
 const MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
 const DIAS  = ['D','L','M','X','J','V','S']
 
+// ── FIX #9: todayISO como constante de módulo ─────────────────────────────────
+// Antes estaba dentro de DateRangePicker y se recalculaba en cada render
+// (hover sobre días, cambio de mes, etc.). La fecha de hoy no cambia durante
+// una sesión, así que calcularlo una sola vez al cargar el módulo es suficiente.
+const _today    = new Date()
+const TODAY_ISO = toISO(_today.getFullYear(), _today.getMonth(), _today.getDate())
+// ─────────────────────────────────────────────────────────────────────────────
+
 function getDaysInMonth(year: number, month: number) {
   return new Date(year, month + 1, 0).getDate()
 }
@@ -54,7 +62,8 @@ function DateRangePicker({ llegada, salida, onChangeLlegada, onChangeSalida }: D
   const month2 = viewMonth === 11 ? 0 : viewMonth + 1
   const year2  = viewMonth === 11 ? viewYear + 1 : viewYear
 
-  const todayISO = toISO(today.getFullYear(), today.getMonth(), today.getDate())
+  // Usamos TODAY_ISO (constante de módulo) en lugar de recalcular aquí
+  const todayISO = TODAY_ISO
 
   function handleDayClick(iso: string) {
     if (iso < todayISO) return
@@ -208,9 +217,20 @@ function DateRangePicker({ llegada, salida, onChangeLlegada, onChangeSalida }: D
       {/* Noches */}
       {llegada && salida && (
         <div className="border-t border-verde-oscuro/10 px-4 py-2 text-center">
-          <span className="font-sans text-xs text-verde-oscuro/60">
-            {Math.round((new Date(salida).getTime() - new Date(llegada).getTime()) / 86400000)} noche{Math.round((new Date(salida).getTime() - new Date(llegada).getTime()) / 86400000) !== 1 ? 's' : ''}
-          </span>
+          {/* ── FIX #6: cálculo de noches en variable local ──────────────────
+              Antes se calculaba dos veces en la misma expresión JSX:
+              una para mostrar el número y otra para decidir el plural.
+              Ahora se calcula una vez y se reutiliza, más limpio y eficiente. */}
+          {(() => {
+            const noches = Math.round(
+              (new Date(salida).getTime() - new Date(llegada).getTime()) / 86400000
+            )
+            return (
+              <span className="font-sans text-xs text-verde-oscuro/60">
+                {noches} noche{noches !== 1 ? 's' : ''}
+              </span>
+            )
+          })()}
         </div>
       )}
     </div>
@@ -232,7 +252,7 @@ const infoItems = [
   {
     icon: '✉️',
     title: 'Correo',
-    lines: ['evangelistagodoy0611@outlook'],
+    lines: ['info@villaletty.com', 'reservas@villaletty.com'],
   },
   {
     icon: '📸',
@@ -313,7 +333,7 @@ export default function Contacto() {
             className="text-verde-oscuro mb-4"
             style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 5vw, 3rem)' }}
           >
-            Contacto & reservas
+            Contacto & Reservas
           </h2>
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="h-px w-12 bg-dorado" />
@@ -358,7 +378,7 @@ export default function Contacto() {
                       ) : item.title === 'Teléfono / WhatsApp' ? (
                         <>
                           <a
-                            href="tel:+573134941865"
+                            href="tel:+573242307424"
                             className="block text-verde-oscuro/80 hover:text-dorado font-sans font-light text-sm transition-colors"
                           >
                             {item.lines[0]}
