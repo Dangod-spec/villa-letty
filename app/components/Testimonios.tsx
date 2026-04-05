@@ -135,7 +135,9 @@ export default function Testimonios() {
               </p>
 
               {/* Autor */}
-              <div className="border-t border-verde-oscuro/8 pt-3 flex items-center justify-between">
+              {/* FIX #10: cambiado /8 → /10. Tailwind no genera opacidad /8 por defecto,
+                   solo múltiplos de 5 y valores definidos en el config. */}
+              <div className="border-t border-verde-oscuro/10 pt-3 flex items-center justify-between">
                 <div>
                   <p className="text-verde-oscuro font-sans text-sm font-medium">{t.nombre}</p>
                   <p className="text-verde-oscuro/45 font-sans text-xs">{t.fecha}</p>
