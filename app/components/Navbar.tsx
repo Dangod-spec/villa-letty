@@ -1,5 +1,23 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+
+// ── FIX #3 & #8: links declarado FUERA del componente ────────────────────────
+// Antes estaba dentro del componente, lo que causaba dos problemas:
+// 1. Se recreaba en cada render (incluyendo cada evento de scroll = 30-60x/segundo)
+// 2. El useEffect lo usaba internamente sin declararlo como dependencia,
+//    generando warning en React Strict Mode.
+// Al moverlo fuera del componente es una constante inmutable que no se recrea nunca.
+const NAV_LINKS = [
+  { href: '#nosotros', label: 'Nosotros', id: 'nosotros' },
+  { href: '#servicios', label: 'Servicios', id: 'servicios' },
+  { href: '#tarifas', label: 'Tarifas', id: 'tarifas' },
+  { href: '#galeria', label: 'Galería', id: 'galeria' },
+  { href: '#contacto', label: 'Contacto', id: 'contacto' },
+]
+
+// Extraemos los IDs también como constante para no recalcularlos en cada scroll
+const SECTION_IDS = NAV_LINKS.map((l) => l.id)
+// ─────────────────────────────────────────────────────────────────────────────
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -7,28 +25,18 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('')
   const [showBackToTop, setShowBackToTop] = useState(false)
 
-  const links = [
-    { href: '#nosotros', label: 'Nosotros', id: 'nosotros' },
-    { href: '#servicios', label: 'Servicios', id: 'servicios' },
-    { href: '#tarifas', label: 'Tarifas', id: 'tarifas' },
-    { href: '#galeria', label: 'Galería', id: 'galeria' },
-    { href: '#contacto', label: 'Contacto', id: 'contacto' },
-  ]
-
   useEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY
-
-      // Navbar background
       setScrolled(y > 60)
-
-      // Botón volver arriba: aparece después de 400px
       setShowBackToTop(y > 400)
 
-      // Sección activa: detecta cuál está más cerca del top
-      const sectionIds = links.map((l) => l.id)
+      // Detecta qué sección está visible en pantalla
       let current = ''
-      for (const id of sectionIds) {
+      for (const id of SECTION_IDS) {
+        // ── FIX #8: ahora usamos SECTION_IDS (constante externa) en lugar de
+        // links.map() dentro del efecto. Esto elimina la dependencia faltante
+        // porque SECTION_IDS nunca cambia — no necesita estar en el array de deps.
         const el = document.getElementById(id)
         if (el) {
           const top = el.getBoundingClientRect().top
@@ -38,9 +46,13 @@ export default function Navbar() {
       setActiveSection(current)
     }
 
+    // { passive: true } le dice al navegador que este listener nunca llamará
+    // preventDefault(), permitiéndole optimizar el scroll sin esperar al JS
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+  // Array de dependencias vacío es correcto ahora: el efecto solo configura
+  // el listener una vez, y SECTION_IDS es una constante externa estable.
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
@@ -74,7 +86,7 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
-            {links.map((link) => {
+            {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.id
               return (
                 <a
@@ -84,7 +96,6 @@ export default function Navbar() {
                   style={{ color: isActive ? '#c9a84c' : 'rgba(245,240,232,0.85)' }}
                 >
                   {link.label}
-                  {/* Underline activo */}
                   <span
                     className="absolute -bottom-1 left-0 h-px bg-dorado transition-all duration-300"
                     style={{ width: isActive ? '100%' : '0%' }}
@@ -115,7 +126,7 @@ export default function Navbar() {
         {/* Mobile menu */}
         {menuOpen && (
           <div className="md:hidden bg-verde-oscuro/98 backdrop-blur-md px-6 pt-4 pb-6 flex flex-col gap-4">
-            {links.map((link) => {
+            {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.id
               return (
                 <a
@@ -153,16 +164,7 @@ export default function Navbar() {
           transition: 'opacity 0.3s ease, transform 0.3s ease, background 0.3s, color 0.3s, scale 0.2s',
         }}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="w-4 h-4"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
           <path d="M18 15l-6-6-6 6" />
         </svg>
       </button>
