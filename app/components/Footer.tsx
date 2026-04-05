@@ -55,7 +55,7 @@ function ModalPrivacidad({ onClose }: { onClose: () => void }) {
 
           <div>
             <h3 className="text-verde-oscuro font-medium mb-2">5. Derechos del titular</h3>
-            <p>De acuerdo con la Ley 1581 de 2012 y el Decreto 1377 de 2013, usted tiene derecho a: conocer, actualizar, rectificar y suprimir sus datos personales. Para ejercer estos derechos comuníquese al número +57 324 230 7424.</p>
+            <p>De acuerdo con la Ley 1581 de 2012 y el Decreto 1377 de 2013, usted tiene derecho a: conocer, actualizar, rectificar y suprimir sus datos personales. Para ejercer estos derechos comuníquese al número +57 313 494 1865.</p>
           </div>
 
           <div>
