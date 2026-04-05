@@ -37,13 +37,15 @@ function ImageSlider({ images, alt }: { images: string[]; alt: string }) {
           className="absolute inset-0 transition-opacity duration-700"
           style={{ opacity: i === current ? 1 : 0 }}
         >
+          {/* FIX #11: se eliminó loading="lazy" — Next.js <Image> aplica lazy loading
+               automáticamente a todas las imágenes sin el prop priority.
+               Incluirlo era redundante y podía interferir con la lógica interna de Next.js. */}
           <Image
             src={src}
             alt={alt}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            loading="lazy"
           />
         </div>
       ))}
