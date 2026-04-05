@@ -313,7 +313,7 @@ export default function Contacto() {
             className="text-verde-oscuro mb-4"
             style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 5vw, 3rem)' }}
           >
-            Contacto & Reservas
+            Contacto & reservas
           </h2>
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="h-px w-12 bg-dorado" />
@@ -358,7 +358,7 @@ export default function Contacto() {
                       ) : item.title === 'Teléfono / WhatsApp' ? (
                         <>
                           <a
-                            href="tel:+573242307424"
+                            href="tel:+573134941865"
                             className="block text-verde-oscuro/80 hover:text-dorado font-sans font-light text-sm transition-colors"
                           >
                             {item.lines[0]}
