@@ -232,7 +232,7 @@ const infoItems = [
   {
     icon: '✉️',
     title: 'Correo',
-    lines: ['info@villaletty.com', 'reservas@villaletty.com'],
+    lines: ['evangelistagodoy0611@outlook],
   },
   {
     icon: '📸',
