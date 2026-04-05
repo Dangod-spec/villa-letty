@@ -313,7 +313,7 @@ export default function Contacto() {
             className="text-verde-oscuro mb-4"
             style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 5vw, 3rem)' }}
           >
-            Contacto & reserva
+            Contacto & Reservas
           </h2>
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="h-px w-12 bg-dorado" />
@@ -333,7 +333,7 @@ export default function Contacto() {
                 className="text-verde-oscuro mb-6 text-xl"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
-                Información de contacto
+                Información de Contacto
               </h3>
               <div className="space-y-5">
                 {infoItems.map((item) => (
@@ -402,12 +402,11 @@ export default function Contacto() {
 
           {/* Right: Form */}
           <div className="bg-white/60 backdrop-blur-sm border border-verde-oscuro/10 p-8 shadow-sm">
-            <>
                 <h3
                   className="text-verde-oscuro mb-6 text-xl"
                   style={{ fontFamily: "'Playfair Display', serif" }}
                 >
-                  Solicitar reserva
+                  Solicitar Reserva
                 </h3>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
@@ -495,7 +494,6 @@ export default function Contacto() {
                     Se abrirá WhatsApp con tu solicitud lista para enviar.
                   </p>
                 </form>
-            </>
           </div>
         </div>
       </div>
