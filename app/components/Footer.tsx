@@ -35,7 +35,7 @@ function ModalPrivacidad({ onClose }: { onClose: () => void }) {
 
           <div>
             <h3 className="text-verde-oscuro font-medium mb-2">1. Responsable del tratamiento</h3>
-            <p>Centro Vacacional Villa Letty, ubicado en la Vía Panamericana Bogotá-Girardot Km. 69, Chinauta, Fusagasugá, Cundinamarca, Colombia. Contacto: +57 324 230 7424.</p>
+            <p>Centro Vacacional Villa Letty, ubicado en la Vía Panamericana Bogotá-Girardot Km. 69, Chinauta, Fusagasugá, Cundinamarca, Colombia. Contacto: +57 313 494 1865.</p>
           </div>
 
           <div>
