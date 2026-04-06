@@ -1,6 +1,5 @@
 'use client'
 const testimonios = [
-
   {
     nombre: 'Eliseo Duque Carrascal',
     fecha: 'Marzo 2026',
