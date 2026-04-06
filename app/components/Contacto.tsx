@@ -247,12 +247,12 @@ const infoItems = [
   {
     icon: '📞',
     title: 'Teléfono / WhatsApp',
-    lines: ['+57 324 230 7424', 'Lunes a Domingo, 7am – 8pm'],
+    lines: ['+57 313 494 1865', 'Lunes a Domingo, 7am – 8pm'],
   },
   {
     icon: '✉️',
     title: 'Correo',
-    lines: ['info@villaletty.com', 'reservas@villaletty.com'],
+    lines: ['evangelistagodoy0611@outlook.com'],
   },
   {
     icon: '📸',
@@ -378,7 +378,7 @@ export default function Contacto() {
                       ) : item.title === 'Teléfono / WhatsApp' ? (
                         <>
                           <a
-                            href="tel:+573242307424"
+                            href="tel:+573134941865"
                             className="block text-verde-oscuro/80 hover:text-dorado font-sans font-light text-sm transition-colors"
                           >
                             {item.lines[0]}
