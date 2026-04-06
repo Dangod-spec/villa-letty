@@ -99,8 +99,13 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in opacity-0 delay-700" style={{animationFillMode:'forwards'}}>
+      {/* Scroll indicator — z-20 para quedar siempre encima de los botones,
+           pointer-events-none para no bloquear clics en los botones que puedan
+           quedar debajo en pantallas pequeñas */}
+      <div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in opacity-0 delay-700 pointer-events-none"
+        style={{ animationFillMode: 'forwards', zIndex: 20 }}
+      >
         <span className="text-crema/50 text-xs tracking-widest uppercase font-sans">Descubre</span>
         <div className="w-px h-10 bg-gradient-to-b from-dorado/60 to-transparent animate-float" />
       </div>
