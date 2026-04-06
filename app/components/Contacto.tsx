@@ -247,17 +247,22 @@ const infoItems = [
   {
     icon: '📞',
     title: 'Teléfono / WhatsApp',
-    lines: ['+57 313 494 1865', 'Lunes a Domingo, 7am – 8pm'],
+    lines: ['+57 324 230 7424', 'Lunes a Domingo, 7am – 8pm'],
   },
   {
     icon: '✉️',
     title: 'Correo',
-    lines: ['evangelistagodoy0611@outlook.com'],
+    lines: ['info@villaletty.com', 'reservas@villaletty.com'],
   },
   {
     icon: '📸',
     title: 'Instagram',
     lines: ['@villalettyfinca', 'Síguenos para más fotos'],
+  },
+  {
+    icon: '🚗',
+    title: 'Cómo llegar',
+    lines: ['Km 69 Vía Panamericana Bogotá-Girardot', 'A 120 min de Bogotá · Chinauta, Fusagasugá'],
   },
 ]
 
@@ -378,7 +383,19 @@ export default function Contacto() {
                       ) : item.title === 'Teléfono / WhatsApp' ? (
                         <>
                           <a
-                            href="tel:+573134941865"
+                            href="tel:+573242307424"
+                            className="block text-verde-oscuro/80 hover:text-dorado font-sans font-light text-sm transition-colors"
+                          >
+                            {item.lines[0]}
+                          </a>
+                          <p className="text-verde-oscuro/60 font-sans font-light text-sm">{item.lines[1]}</p>
+                        </>
+                      ) : item.title === 'Cómo llegar' ? (
+                        <>
+                          <a
+                            href="https://www.google.com/maps/place/Centro+Vacacional+Villa+Lety/@4.2855072,-74.4724188,17z"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="block text-verde-oscuro/80 hover:text-dorado font-sans font-light text-sm transition-colors"
                           >
                             {item.lines[0]}
