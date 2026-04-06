@@ -1,28 +1,29 @@
 'use client'
 const testimonios = [
+
   {
-    nombre: 'Laura Martínez',
-    fecha: 'Marzo 2025',
-    texto: 'Un lugar increíble para descansar en familia. Las piscinas son hermosas y la atención del personal es excelente. Definitivamente volveremos.',
+    nombre: 'Eliseo Duque Carrascal',
+    fecha: 'Marzo 2026',
+    texto: 'Precio por persona: 20.000-40.000 $, Comida: 5, Servicio: 5, Ambiente: 5',
+    estrellas: 5,
+  },  
+  {
+    nombre: 'José Armando Montealegre Villada',
+    fecha: 'Marzo 2026',
+    texto: 'Lugar cerca de Bogotá fusa sobre la avenida principal amplio tranquilo.',
+    estrellas: 5,
+  },  
+  {
+    nombre: 'JOSE MIGUEL Alarcon',
+    fecha: 'Enero 2026',
+    texto: 'Espacios disponibles para actividades de convivencia. Piscina grande, espacio de duchas y varios baños, salón grande, zona de comedor grande y adecuado, comida deliciosa. espacios adecuados para estadía. Zona de juegos agradable.',
     estrellas: 5,
   },
   {
-    nombre: 'Carlos Rodríguez',
-    fecha: 'Enero 2025',
-    texto: 'Pasamos un fin de semana espectacular. Las habitaciones muy cómodas, la comida deliciosa y el ambiente tranquilo. Ideal para desconectarse de la ciudad.',
-    estrellas: 5,
-  },
-  {
-    nombre: 'Sandra Gómez',
-    fecha: 'Diciembre 2024',
-    texto: 'Celebramos el cumpleaños de mi mamá aquí y fue perfecto. Los salones tienen mucho espacio, la decoración es bonita y el servicio muy atento.',
+    nombre: 'Johan Sebastian Sanchez Cabrejo',
+    fecha: 'Diciembre 2025',
+    texto: 'Es un lugar amplio en el cual se podrán realizar eventos e incluso tiene varias zonas verdes grandes, para hacer actividades al aire libre. El único pero es la piscina qué es algo pequeña.',
     estrellas: 4,
-  },
-  {
-    nombre: 'Familia Herrera',
-    fecha: 'Noviembre 2024',
-    texto: 'El clima de Chinauta es perfecto y Villa Letty lo aprovecha al máximo. Los niños no querían irse. Las zonas verdes y la piscina son lo mejor.',
-    estrellas: 5,
   },
 ]
 
