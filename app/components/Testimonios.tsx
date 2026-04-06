@@ -1,29 +1,33 @@
 'use client'
-const testimonios = [
 
+const testimonios = [
   {
     nombre: 'Eliseo Duque Carrascal',
     fecha: 'Marzo 2026',
     texto: 'Precio por persona: 20.000-40.000 $, Comida: 5, Servicio: 5, Ambiente: 5',
     estrellas: 5,
-  },  
+    link: 'https://maps.app.goo.gl/LJiatfQCAvojcgp1A',
+  },
   {
     nombre: 'José Armando Montealegre Villada',
     fecha: 'Marzo 2026',
     texto: 'Lugar cerca de Bogotá fusa sobre la avenida principal amplio tranquilo.',
     estrellas: 5,
-  },  
+    link: 'https://maps.app.goo.gl/M27AC1L6iVWVWLow7',
+  },
   {
     nombre: 'JOSE MIGUEL Alarcon',
     fecha: 'Enero 2026',
     texto: 'Espacios disponibles para actividades de convivencia. Piscina grande, espacio de duchas y varios baños, salón grande, zona de comedor grande y adecuado, comida deliciosa. espacios adecuados para estadía. Zona de juegos agradable.',
     estrellas: 5,
+    link: 'https://maps.app.goo.gl/nBESge8YHrMiSMJHA',
   },
   {
     nombre: 'Johan Sebastian Sanchez Cabrejo',
     fecha: 'Diciembre 2025',
     texto: 'Es un lugar amplio en el cual se podrán realizar eventos e incluso tiene varias zonas verdes grandes, para hacer actividades al aire libre. El único pero es la piscina qué es algo pequeña.',
     estrellas: 4,
+    link: 'https://maps.app.goo.gl/FDJ88wwc53ssk8pZ9',
   },
 ]
 
@@ -113,15 +117,19 @@ export default function Testimonios() {
           </div>
         </div>
 
-        {/* Cards */}
+        {/* Cards — cada card es un enlace a la reseña real en Google Maps */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {testimonios.map((t) => (
-            <div
+            <a
               key={t.nombre}
-              className="bg-white p-6 flex flex-col gap-4"
+              href={t.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-6 flex flex-col gap-4 group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               style={{
                 border: '1px solid rgba(26,58,42,0.07)',
                 boxShadow: '0 2px 16px rgba(26,58,42,0.05)',
+                textDecoration: 'none',
               }}
             >
               {/* Estrellas */}
@@ -136,11 +144,11 @@ export default function Testimonios() {
               </p>
 
               {/* Autor */}
-              {/* FIX #10: cambiado /8 → /10. Tailwind no genera opacidad /8 por defecto,
-                   solo múltiplos de 5 y valores definidos en el config. */}
               <div className="border-t border-verde-oscuro/10 pt-3 flex items-center justify-between">
                 <div>
-                  <p className="text-verde-oscuro font-sans text-sm font-medium">{t.nombre}</p>
+                  <p className="text-verde-oscuro font-sans text-sm font-medium group-hover:text-dorado transition-colors">
+                    {t.nombre}
+                  </p>
                   <p className="text-verde-oscuro/45 font-sans text-xs">{t.fecha}</p>
                 </div>
                 {/* Google icon */}
@@ -151,7 +159,7 @@ export default function Testimonios() {
                   <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                 </svg>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 
