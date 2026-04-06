@@ -6,14 +6,14 @@ const testimonios = [
     texto: 'Precio por persona: 20.000-40.000 $, Comida: 5, Servicio: 5, Ambiente: 5',
     estrellas: 5,
     link: 'https://maps.app.goo.gl/LJiatfQCAvojcgp1A',
-  },  
+  },
   {
     nombre: 'José Armando Montealegre Villada',
     fecha: 'Marzo 2026',
     texto: 'Lugar cerca de Bogotá fusa sobre la avenida principal amplio tranquilo.',
     estrellas: 5,
     link: 'https://maps.app.goo.gl/M27AC1L6iVWVWLow7',
-  },  
+  },
   {
     nombre: 'JOSE MIGUEL Alarcon',
     fecha: 'Enero 2026',
@@ -130,27 +130,21 @@ export default function Testimonios() {
                 boxShadow: '0 2px 16px rgba(26,58,42,0.05)',
                 textDecoration: 'none',
               }}
-              onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 8px 32px rgba(26,58,42,0.13)')}
-              onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 2px 16px rgba(26,58,42,0.05)')}
+              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 8px 32px rgba(26,58,42,0.13)')}
+              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 2px 16px rgba(26,58,42,0.05)')}
             >
-              {/* Estrellas */}
               <Estrellas cantidad={t.estrellas} />
-
-              {/* Texto */}
               <p
                 className="text-verde-oscuro/75 font-sans font-light text-sm leading-relaxed flex-1"
                 style={{ fontStyle: 'italic' }}
               >
                 "{t.texto}"
               </p>
-
-              {/* Autor */}
               <div className="border-t border-verde-oscuro/10 pt-3 flex items-center justify-between">
                 <div>
                   <p className="text-verde-oscuro font-sans text-sm font-medium">{t.nombre}</p>
                   <p className="text-verde-oscuro/45 font-sans text-xs">{t.fecha}</p>
                 </div>
-                {/* Google icon */}
                 <svg viewBox="0 0 24 24" className="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                   <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
