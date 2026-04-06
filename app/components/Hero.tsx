@@ -28,7 +28,8 @@ export default function Hero() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      {/* pb-24 garantiza que los botones nunca se superpongan con el indicador "Descubre" en desktop */}
+      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto pb-24">
         {/* Badge */}
         <div className="animate-fade-in inline-flex items-center gap-2 mb-8 px-5 py-2 border border-dorado/60 text-dorado text-xs tracking-widest uppercase font-sans">
           <span>✦</span>
