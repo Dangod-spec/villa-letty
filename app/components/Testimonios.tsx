@@ -1,32 +1,29 @@
 'use client'
 const testimonios = [
+
   {
     nombre: 'Eliseo Duque Carrascal',
     fecha: 'Marzo 2026',
     texto: 'Precio por persona: 20.000-40.000 $, Comida: 5, Servicio: 5, Ambiente: 5',
     estrellas: 5,
-    link: 'https://maps.app.goo.gl/LJiatfQCAvojcgp1A',
-  },
+  },  
   {
     nombre: 'José Armando Montealegre Villada',
     fecha: 'Marzo 2026',
     texto: 'Lugar cerca de Bogotá fusa sobre la avenida principal amplio tranquilo.',
     estrellas: 5,
-    link: 'https://maps.app.goo.gl/M27AC1L6iVWVWLow7',
-  },
+  },  
   {
     nombre: 'JOSE MIGUEL Alarcon',
     fecha: 'Enero 2026',
     texto: 'Espacios disponibles para actividades de convivencia. Piscina grande, espacio de duchas y varios baños, salón grande, zona de comedor grande y adecuado, comida deliciosa. espacios adecuados para estadía. Zona de juegos agradable.',
     estrellas: 5,
-    link: 'https://maps.app.goo.gl/nBESge8YHrMiSMJHA',
   },
   {
     nombre: 'Johan Sebastian Sanchez Cabrejo',
     fecha: 'Diciembre 2025',
     texto: 'Es un lugar amplio en el cual se podrán realizar eventos e incluso tiene varias zonas verdes grandes, para hacer actividades al aire libre. El único pero es la piscina qué es algo pequeña.',
     estrellas: 4,
-    link: 'https://maps.app.goo.gl/FDJ88wwc53ssk8pZ9',
   },
 ]
 
@@ -104,7 +101,7 @@ export default function Testimonios() {
             <div className="h-10 w-px bg-verde-oscuro/10" />
             <div className="text-left">
               <p className="text-verde-oscuro font-sans text-sm font-medium">Calificación en Google</p>
-              
+              <a
                 href="https://www.google.com/maps/place/Centro+Vacacional+Villa+Lety/@4.2855072,-74.4724188,17z/data=!4m10!1m2!2m1!1svilla+letty!3m6!1s0x8e3f1c48caf5d1e7:0xee4b053585893b1b!8m2!3d4.2855072!4d-74.4702301!15sCgt2aWxsYSBsZXR0eZIBBWhvdGVs4AEA!16s%2Fg%2F11b7hmgf4t"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -119,32 +116,34 @@ export default function Testimonios() {
         {/* Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {testimonios.map((t) => (
-            
+            <div
               key={t.nombre}
-              href={t.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white p-6 flex flex-col gap-4 group transition-all duration-300 hover:-translate-y-1"
+              className="bg-white p-6 flex flex-col gap-4"
               style={{
                 border: '1px solid rgba(26,58,42,0.07)',
                 boxShadow: '0 2px 16px rgba(26,58,42,0.05)',
-                textDecoration: 'none',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 8px 32px rgba(26,58,42,0.13)')}
-              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 2px 16px rgba(26,58,42,0.05)')}
             >
+              {/* Estrellas */}
               <Estrellas cantidad={t.estrellas} />
+
+              {/* Texto */}
               <p
                 className="text-verde-oscuro/75 font-sans font-light text-sm leading-relaxed flex-1"
                 style={{ fontStyle: 'italic' }}
               >
                 "{t.texto}"
               </p>
+
+              {/* Autor */}
+              {/* FIX #10: cambiado /8 → /10. Tailwind no genera opacidad /8 por defecto,
+                   solo múltiplos de 5 y valores definidos en el config. */}
               <div className="border-t border-verde-oscuro/10 pt-3 flex items-center justify-between">
                 <div>
                   <p className="text-verde-oscuro font-sans text-sm font-medium">{t.nombre}</p>
                   <p className="text-verde-oscuro/45 font-sans text-xs">{t.fecha}</p>
                 </div>
+                {/* Google icon */}
                 <svg viewBox="0 0 24 24" className="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                   <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -152,14 +151,14 @@ export default function Testimonios() {
                   <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                 </svg>
               </div>
-            </a>
+            </div>
           ))}
         </div>
 
         {/* CTA */}
         <p className="text-center text-verde-oscuro/50 font-sans font-light text-sm mt-10">
           ¿Ya nos visitaste? Déjanos tu reseña en{' '}
-          
+          <a
             href="https://www.google.com/maps/place/Centro+Vacacional+Villa+Lety/@4.2855072,-74.4724188,17z"
             target="_blank"
             rel="noopener noreferrer"
