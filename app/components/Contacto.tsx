@@ -247,12 +247,12 @@ const infoItems = [
   {
     icon: '📞',
     title: 'Teléfono / WhatsApp',
-    lines: ['+57 324 230 7424', 'Lunes a Domingo, 7am – 8pm'],
+    lines: ['+57 313 494 1865', 'Lunes a Domingo, 7am – 8pm'],
   },
   {
     icon: '✉️',
     title: 'Correo',
-    lines: ['info@villaletty.com', 'reservas@villaletty.com'],
+    lines: ['evangelistagodoy0611@outlook.com'],
   },
   {
     icon: '📸',
@@ -338,7 +338,7 @@ export default function Contacto() {
             className="text-verde-oscuro mb-4"
             style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 5vw, 3rem)' }}
           >
-            Contacto & Reservas
+            Contacto & reservas
           </h2>
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="h-px w-12 bg-dorado" />
@@ -358,7 +358,7 @@ export default function Contacto() {
                 className="text-verde-oscuro mb-6 text-xl"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
-                Información de Contacto
+                Información de contacto
               </h3>
               <div className="space-y-5">
                 {infoItems.map((item) => (
